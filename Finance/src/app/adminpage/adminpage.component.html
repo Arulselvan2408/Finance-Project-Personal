@@ -1,0 +1,98 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Password</th>
+            <th>Card Type</th>
+            <th>Bank Name</th>
+            <th>IFSC Code</th>
+            <th>Account Number</th>
+            <th>Activation Status</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of userinformation">
+                <td>{{u.UserName}}</td>
+                <td>{{u.Name}}</td>
+                <td>{{u.DateofBirth}}</td>
+                <td>{{u.PhoneNo}}</td>
+                <td>{{u.Email}}</td>
+                <td>{{u.Address}}</td>
+                <td>{{u.Password}}</td>
+                <td>{{u.CardType}}</td>
+                <td>{{u.SelectBank}}</td>
+                <td>{{u.IFSC_Code}}</td>
+                <td>{{u.AccountNumber}}</td>
+                <td>{{u.ActivationStatus}}</td>
+                <td><button class="btn btn-info" type="submit">Edit</button></td>
+                <td><button class="btn btn-danger" type="submit" (click)="removeuserinfo(u.UserName)">Delete</button></td>
+                <td><button class="btn btn-success" type="submit" disabled="(u.ActivationStatus=false)">Activate</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<div>
+    <form #userform="ngForm">
+        <div>
+            <label for="UserName">UserName: </label> &nbsp;&nbsp;
+            <input type="text" name="UserName" required [(ngModel)]="userinfo.UserName" #name=ngModel>
+        </div>
+        <div>
+            <label for="Name">Name: </label> &nbsp;&nbsp;
+            <input type="text" name="Name" required [(ngModel)]="userinfo.Name" #name=ngModel>
+        </div>
+        <div>
+            <label for="DateofBirth">DateofBirth: </label> &nbsp;&nbsp;
+            <input type="date" name="DateofBirth" required [(ngModel)]="userinfo.DateofBirth" #name=ngModel>
+        </div>
+        <div>
+            <label for="PhoneNo">PhoneNo: </label> &nbsp;&nbsp;
+            <input type="number" name="PhoneNo" required [(ngModel)]="userinfo.PhoneNo" #name=ngModel>
+        </div>
+        <div>
+            <label for="Email">Email: </label> &nbsp;&nbsp;
+            <input type="text" name="Email" required [(ngModel)]="userinfo.Email" #name=ngModel>
+        </div>
+        <div>
+            <label for="Address">Address: </label> &nbsp;&nbsp;
+            <input type="text" name="Address" required [(ngModel)]="userinfo.Address" #name=ngModel>
+        </div>
+        <div>
+            <label for="Password">Password: </label> &nbsp;&nbsp;
+            <input type="password" name="Password" required [(ngModel)]="userinfo.Password" #name=ngModel>
+        </div>
+        <div>
+            <label for="CardType">CardType: </label> &nbsp;&nbsp;
+            <input type="text" name="CardType" required [(ngModel)]="userinfo.CardType" #name=ngModel>
+        </div>  
+        <div>
+            <label for="SelectBank">SelectBank: </label> &nbsp;&nbsp;
+            <input type="text" name="SelectBank" required [(ngModel)]="userinfo.SelectBank" #name=ngModel>
+        </div> 
+        <div>
+            <label for="IFSC_Code">IFSC_Code: </label> &nbsp;&nbsp;
+            <input type="text" name="IFSC_Code" required [(ngModel)]="userinfo.IFSC_Code" #name=ngModel>
+        </div> 
+        <div>
+            <label for="AccountNumber">AccountNumber: </label> &nbsp;&nbsp;
+            <input type="number" name="AccountNumber" required [(ngModel)]="userinfo.AccountNumber" #name=ngModel>
+        </div> 
+        <button type="submit" class="btn btn-success"(click)="insertUserInfo()">Submit</button>         
+        
+    </form>
+</div>

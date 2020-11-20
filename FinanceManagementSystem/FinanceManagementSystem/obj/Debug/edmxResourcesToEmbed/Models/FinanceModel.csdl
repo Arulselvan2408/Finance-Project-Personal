@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="AdminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ActivationStatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ConsumerTable" Relationship="Self.FK__Admin__UserName__412EB0B6" FromRole="Admin" ToRole="ConsumerTable" />
+    <NavigationProperty Name="CardTables" Relationship="Self.FK__CardTable__Name__32AB8735" FromRole="Admin" ToRole="CardTable" />
+  </EntityType>
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="BankName" />
+    </Key>
+    <Property Name="BankID" Type="Int32" />
+    <Property Name="BankName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ConsumerTables" Relationship="Self.FK__ConsumerT__Selec__3E52440B" FromRole="Bank" ToRole="ConsumerTable" />
+  </EntityType>
+  <EntityType Name="CardTable">
+    <Key>
+      <PropertyRef Name="CardNumber" />
+    </Key>
+    <Property Name="CardNumber" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ValidTill" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CardType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RemainingCredit" Type="Double" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__CardTable__Name__32AB8735" FromRole="CardTable" ToRole="Admin" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__CardNumb__3587F3E0" FromRole="CardTable" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="CardTypeTable">
+    <Key>
+      <PropertyRef Name="CardType" />
+    </Key>
+    <Property Name="CardType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JoiningFee" Type="Int32" />
+    <Property Name="TotalCredit" Type="Int32" />
+    <NavigationProperty Name="ConsumerTables" Relationship="Self.FK__ConsumerT__CardT__3D5E1FD2" FromRole="CardTypeTable" ToRole="ConsumerTable" />
+  </EntityType>
+  <EntityType Name="ConsumerTable">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateofBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PhoneNo" Type="Int64" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CardType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SelectBank" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IFSC_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="AccountNumber" Type="Int64" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK__Admin__UserName__412EB0B6" FromRole="ConsumerTable" ToRole="Admin" />
+    <NavigationProperty Name="Bank" Relationship="Self.FK__ConsumerT__Selec__3E52440B" FromRole="ConsumerTable" ToRole="Bank" />
+    <NavigationProperty Name="CardTypeTable" Relationship="Self.FK__ConsumerT__CardT__3D5E1FD2" FromRole="ConsumerTable" ToRole="CardTypeTable" />
+    <NavigationProperty Name="OTP_Validation" Relationship="Self.FK__OTP_Valid__UserN__6FE99F9F" FromRole="ConsumerTable" ToRole="OTP_Validation" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BillAmountperMonth" Type="Double" Nullable="false" />
+    <Property Name="CardNumber" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="CardTable" Relationship="Self.FK__Orders__CardNumb__3587F3E0" FromRole="Orders" ToRole="CardTable" />
+  </EntityType>
+  <EntityType Name="OTP_Validation">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OTP_Sent" Type="Int32" />
+    <NavigationProperty Name="ConsumerTable" Relationship="Self.FK__OTP_Valid__UserN__6FE99F9F" FromRole="OTP_Validation" ToRole="ConsumerTable" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CostPerUnit" Type="Int32" Nullable="false" />
+    <Property Name="AvailableQuantity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Admin__UserName__412EB0B6">
+    <End Role="ConsumerTable" Type="Self.ConsumerTable" Multiplicity="1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ConsumerTable">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="UserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CardTable__Name__32AB8735">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="CardTable" Type="Self.CardTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="CardTable">
+        <PropertyRef Name="Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ConsumerT__Selec__3E52440B">
+    <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+    <End Role="ConsumerTable" Type="Self.ConsumerTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bank">
+        <PropertyRef Name="BankName" />
+      </Principal>
+      <Dependent Role="ConsumerTable">
+        <PropertyRef Name="SelectBank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__CardNumb__3587F3E0">
+    <End Role="CardTable" Type="Self.CardTable" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardTable">
+        <PropertyRef Name="CardNumber" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CardNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ConsumerT__CardT__3D5E1FD2">
+    <End Role="CardTypeTable" Type="Self.CardTypeTable" Multiplicity="0..1" />
+    <End Role="ConsumerTable" Type="Self.ConsumerTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardTypeTable">
+        <PropertyRef Name="CardType" />
+      </Principal>
+      <Dependent Role="ConsumerTable">
+        <PropertyRef Name="CardType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OTP_Valid__UserN__6FE99F9F">
+    <End Role="ConsumerTable" Type="Self.ConsumerTable" Multiplicity="1" />
+    <End Role="OTP_Validation" Type="Self.OTP_Validation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ConsumerTable">
+        <PropertyRef Name="UserName" />
+      </Principal>
+      <Dependent Role="OTP_Validation">
+        <PropertyRef Name="UserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinanceEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Banks" EntityType="Self.Bank" />
+    <EntitySet Name="CardTables" EntityType="Self.CardTable" />
+    <EntitySet Name="CardTypeTables" EntityType="Self.CardTypeTable" />
+    <EntitySet Name="ConsumerTables" EntityType="Self.ConsumerTable" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OTP_Validation" EntityType="Self.OTP_Validation" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__Admin__UserName__412EB0B6" Association="Self.FK__Admin__UserName__412EB0B6">
+      <End Role="ConsumerTable" EntitySet="ConsumerTables" />
+      <End Role="Admin" EntitySet="Admins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CardTable__Name__32AB8735" Association="Self.FK__CardTable__Name__32AB8735">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="CardTable" EntitySet="CardTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ConsumerT__Selec__3E52440B" Association="Self.FK__ConsumerT__Selec__3E52440B">
+      <End Role="Bank" EntitySet="Banks" />
+      <End Role="ConsumerTable" EntitySet="ConsumerTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__CardNumb__3587F3E0" Association="Self.FK__Orders__CardNumb__3587F3E0">
+      <End Role="CardTable" EntitySet="CardTables" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ConsumerT__CardT__3D5E1FD2" Association="Self.FK__ConsumerT__CardT__3D5E1FD2">
+      <End Role="CardTypeTable" EntitySet="CardTypeTables" />
+      <End Role="ConsumerTable" EntitySet="ConsumerTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OTP_Valid__UserN__6FE99F9F" Association="Self.FK__OTP_Valid__UserN__6FE99F9F">
+      <End Role="ConsumerTable" EntitySet="ConsumerTables" />
+      <End Role="OTP_Validation" EntitySet="OTP_Validation" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FinanceModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FinanceModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
