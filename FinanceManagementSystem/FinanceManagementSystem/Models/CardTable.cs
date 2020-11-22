@@ -24,6 +24,7 @@ namespace FinanceManagementSystem.Models
         public string Name { get; set; }
         public string ValidTill { get; set; }
         public string CardType { get; set; }
+        public int TotalCredit { get; set; }
         public Nullable<double> RemainingCredit { get; set; }
     
         public virtual Admin Admin { get; set; }

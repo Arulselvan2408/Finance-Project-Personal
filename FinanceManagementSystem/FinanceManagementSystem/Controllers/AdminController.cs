@@ -1,18 +1,21 @@
-﻿using System;
+﻿using FinanceManagementSystem.Models;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FinanceManagementSystem.Models;
+using FinanceManagementSystem.ViewModel;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
-
-namespace FinanceManagementSystem.Controllers
+namespace FinanceManagementSystem.Image
 {
     public class AdminController : ApiController
     {
         FinanceEntities1 db = new FinanceEntities1();
+        
+        
         public HttpResponseMessage GetUserInfo()
         {
             var UserList = (from con in db.ConsumerTables
@@ -24,8 +27,7 @@ namespace FinanceManagementSystem.Controllers
                                 con.DateofBirth,
                                 con.PhoneNo,
                                 con.Email,
-                                con.Address,
-                                con.Password,
+                                con.Address,                    
                                 con.CardType,
                                 con.SelectBank,
                                 con.IFSC_Code,
@@ -34,33 +36,14 @@ namespace FinanceManagementSystem.Controllers
                             }).ToList();
             return Request.CreateResponse(HttpStatusCode.OK, UserList);
         }
-        public IHttpActionResult insertInfo(ConsumerTable consumer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            
-            
-                db.ConsumerTables.Add(consumer);
-                Admin ad = new Admin();
-                ad.AdminID = 4001;
-                ad.AdminName = "Rajiv";
-                ad.UserName = consumer.UserName;
-                ad.ActivationStatus = false;
-                db.SaveChanges();
-            
-           
-            return StatusCode(HttpStatusCode.NoContent);
 
-        }
-
-        public IHttpActionResult DeleteUserInfo(string username)
+        public HttpResponseMessage DeleteUserInfo(string username)
         {
             ConsumerTable CT = db.ConsumerTables.Find(username);
-            if(CT==null)
+            if (CT == null)
             {
-                return NotFound();
+                return Request.CreateResponse(HttpStatusCode.NotAcceptable);
+                //return NotFound();
             }
             else
             {
@@ -73,35 +56,75 @@ namespace FinanceManagementSystem.Controllers
                     db.Admins.Remove(ad);
                     db.ConsumerTables.Remove(CT);
                     db.SaveChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, "UserInfo Deleted");
                 }
                 catch (Exception)
                 {
-                    throw new Exception("You cannot delete Active User");
+                    return Request.CreateResponse(HttpStatusCode.OK, "You cannot delete Active user");
                 }
             }
-            return Ok(username);
+           
         }
-        public IHttpActionResult EditUserinfo(string username, ConsumerTable consumer)
+        [HttpGet]
+        
+        public HttpResponseMessage EditUserinfo(string username)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if(username != consumer.UserName)
-            {
-                return BadRequest(ModelState);
-            }
-            db.Entry(consumer).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                var UserList = (from con in db.ConsumerTables
+                                join ad in db.Admins on con.UserName equals ad.UserName
+                                where con.UserName == username
+                                select new
+                                {
+                                    con.UserName,
+                                    con.Name,
+                                    con.DateofBirth,
+                                    con.PhoneNo,
+                                    con.Email,
+                                    con.Address,
+                                    con.Password,
+                                    con.CardType,
+                                    con.SelectBank,
+                                    con.IFSC_Code,
+                                    con.AccountNumber,
+                                    ad.ActivationStatus
+                                }).ToList().FirstOrDefault();
+                 return Request.CreateResponse(HttpStatusCode.OK, UserList);
+                
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                return Request.CreateResponse(HttpStatusCode.OK, "Userdata doesnot exists");
             }
-            return StatusCode(HttpStatusCode.NoContent);
+        }
+        [HttpPut]
+        public HttpResponseMessage updateuserinfo(string username, ConsumerTable consumer)
+        {
+            try
+            {
+                var userdata = (from con in db.ConsumerTables
+                                where con.UserName == username
+                                select con).FirstOrDefault();
+                userdata.UserName = consumer.UserName;
+                userdata.Name = consumer.UserName;
+                userdata.PhoneNo = consumer.PhoneNo;
+                userdata.Email = consumer.Email;
+                userdata.Address = consumer.Address;
+                userdata.Password = consumer.Password;
+                userdata.CardType = consumer.CardType;
+                userdata.SelectBank = consumer.SelectBank;
+                userdata.IFSC_Code = consumer.IFSC_Code;
+                userdata.AccountNumber = consumer.AccountNumber;
+                db.SaveChanges();
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Record Updated");
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, "Phone Number & Email should be Unique for Particular user");
+            }
+            
         }
     }
 }
