@@ -14,11 +14,20 @@ namespace FinanceManagementSystem.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
+    
         public int ProductID { get; set; }
         public string ProductName { get; set; }
         public string ProductDetails { get; set; }
         public string Image { get; set; }
         public int CostPerUnit { get; set; }
         public Nullable<int> AvailableQuantity { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

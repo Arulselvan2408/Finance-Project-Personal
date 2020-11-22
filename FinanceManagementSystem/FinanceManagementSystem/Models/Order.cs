@@ -20,5 +20,6 @@ namespace FinanceManagementSystem.Models
         public long CardNumber { get; set; }
     
         public virtual CardTable CardTable { get; set; }
+        public virtual OrderDetail OrderDetail { get; set; }
     }
 }

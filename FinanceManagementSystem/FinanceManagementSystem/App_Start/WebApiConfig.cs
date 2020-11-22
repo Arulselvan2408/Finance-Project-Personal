@@ -1,10 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
-
 
 namespace FinanceManagementSystem
 {
@@ -20,6 +18,7 @@ namespace FinanceManagementSystem
             //to send data back in json
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
