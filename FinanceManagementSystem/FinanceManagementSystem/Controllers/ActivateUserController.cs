@@ -27,6 +27,7 @@ namespace FinanceManagementSystem.Controllers
                 }
                 else
                 {
+                    ad.ActivationStatus = true;
                     CardTable ct = new CardTable();
                     ct.CardType = (from consumer in db.ConsumerTables
                                    where consumer.UserName == username

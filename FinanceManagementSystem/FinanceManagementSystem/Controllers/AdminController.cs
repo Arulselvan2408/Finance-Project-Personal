@@ -20,6 +20,7 @@ namespace FinanceManagementSystem.Image
         {
             var UserList = (from con in db.ConsumerTables
                             join ad in db.Admins on con.UserName equals ad.UserName
+                            where ad.ActivationStatus==false
                             select new
                             {
                                 con.UserName,

@@ -60,7 +60,6 @@
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="TotalAmount" Type="int" Nullable="false" />
     <Property Name="ProcessingFee" Type="float" Nullable="false" />
-    <Property Name="EMI_Tenure_in_Months" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
@@ -68,6 +67,8 @@
     </Key>
     <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderDate" Type="date" Nullable="false" />
+    <Property Name="AmountPayable" Type="float" Nullable="false" />
+    <Property Name="EMI_Tenure_In_Months" Type="int" Nullable="false" />
     <Property Name="BillAmountperMonth" Type="float" Nullable="false" />
     <Property Name="CardNumber" Type="bigint" Nullable="false" />
   </EntityType>
@@ -147,7 +148,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Order__625A9A57">
+  <Association Name="FK__OrderDeta__Order__2EA5EC27">
     <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
     <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -159,7 +160,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Produ__634EBE90">
+  <Association Name="FK__OrderDeta__Produ__2F9A1060">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
     <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
     <ReferentialConstraint>
@@ -171,7 +172,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__CardNumb__3587F3E0">
+  <Association Name="FK__Orders__CardNumb__0880433F">
     <End Role="CardTable" Type="Self.CardTable" Multiplicity="1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -254,15 +255,15 @@
       <End Role="Bank" EntitySet="Bank" />
       <End Role="ConsumerTable" EntitySet="ConsumerTable" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Order__625A9A57" Association="Self.FK__OrderDeta__Order__625A9A57">
+    <AssociationSet Name="FK__OrderDeta__Order__2EA5EC27" Association="Self.FK__OrderDeta__Order__2EA5EC27">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Produ__634EBE90" Association="Self.FK__OrderDeta__Produ__634EBE90">
+    <AssociationSet Name="FK__OrderDeta__Produ__2F9A1060" Association="Self.FK__OrderDeta__Produ__2F9A1060">
       <End Role="Products" EntitySet="Products" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__CardNumb__3587F3E0" Association="Self.FK__Orders__CardNumb__3587F3E0">
+    <AssociationSet Name="FK__Orders__CardNumb__0880433F" Association="Self.FK__Orders__CardNumb__0880433F">
       <End Role="CardTable" EntitySet="CardTable" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>

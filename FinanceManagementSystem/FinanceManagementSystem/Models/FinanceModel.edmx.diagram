@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6e540476e3d4168bd61b53c6ed0574d" Name="Diagram1">
+      <Diagram DiagramId="1afce96bebe64b94bc99340b42c9ffde" Name="Diagram1">
         <EntityTypeShape EntityType="FinanceModel.Admin" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.Bank" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.CardTable" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.CardTypeTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.ConsumerTable" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.OrderDetail" Width="1.5" PointX="12" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FinanceModel.Order" Width="1.5" PointX="9.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.Order" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.OTP_Validation" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.Product" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="FinanceModel.FK__Admin__UserName__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="FinanceModel.FK__CardTable__Name__32AB8735" ManuallyRouted="false" />
         <AssociationConnector Association="FinanceModel.FK__ConsumerT__Selec__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="FinanceModel.FK__Orders__CardNumb__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="FinanceModel.FK__Orders__CardNumb__0880433F" ManuallyRouted="false" />
         <AssociationConnector Association="FinanceModel.FK__ConsumerT__CardT__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="FinanceModel.FK__OTP_Valid__UserN__6FE99F9F" ManuallyRouted="false" />
-        <AssociationConnector Association="FinanceModel.FK__OrderDeta__Order__625A9A57" ManuallyRouted="false" />
-        <AssociationConnector Association="FinanceModel.FK__OrderDeta__Produ__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="FinanceModel.FK__OrderDeta__Order__2EA5EC27" ManuallyRouted="false" />
+        <AssociationConnector Association="FinanceModel.FK__OrderDeta__Produ__2F9A1060" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

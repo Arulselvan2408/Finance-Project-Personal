@@ -65,7 +65,6 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
           <ScalarProperty Name="ProcessingFee" ColumnName="ProcessingFee" />
-          <ScalarProperty Name="EMI_Tenure_in_Months" ColumnName="EMI_Tenure_in_Months" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -74,6 +73,8 @@
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="AmountPayable" ColumnName="AmountPayable" />
+          <ScalarProperty Name="EMI_Tenure_In_Months" ColumnName="EMI_Tenure_In_Months" />
           <ScalarProperty Name="BillAmountperMonth" ColumnName="BillAmountperMonth" />
           <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
         </MappingFragment>

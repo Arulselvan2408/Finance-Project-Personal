@@ -30,7 +30,7 @@
     <Property Name="TotalCredit" Type="Int32" Nullable="false" />
     <Property Name="RemainingCredit" Type="Double" />
     <NavigationProperty Name="Admin" Relationship="Self.FK__CardTable__Name__32AB8735" FromRole="CardTable" ToRole="Admin" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__CardNumb__3587F3E0" FromRole="CardTable" ToRole="Orders" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__CardNumb__0880433F" FromRole="CardTable" ToRole="Orders" />
   </EntityType>
   <EntityType Name="CardTypeTable">
     <Key>
@@ -70,9 +70,8 @@
     <Property Name="Quantity" Type="Int32" Nullable="false" />
     <Property Name="TotalAmount" Type="Int32" Nullable="false" />
     <Property Name="ProcessingFee" Type="Double" Nullable="false" />
-    <Property Name="EMI_Tenure_in_Months" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__625A9A57" FromRole="OrderDetails" ToRole="Orders" />
-    <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__634EBE90" FromRole="OrderDetails" ToRole="Products" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__2EA5EC27" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__2F9A1060" FromRole="OrderDetails" ToRole="Products" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -80,10 +79,12 @@
     </Key>
     <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AmountPayable" Type="Double" Nullable="false" />
+    <Property Name="EMI_Tenure_In_Months" Type="Int32" Nullable="false" />
     <Property Name="BillAmountperMonth" Type="Double" Nullable="false" />
     <Property Name="CardNumber" Type="Int64" Nullable="false" />
-    <NavigationProperty Name="CardTable" Relationship="Self.FK__Orders__CardNumb__3587F3E0" FromRole="Orders" ToRole="CardTable" />
-    <NavigationProperty Name="OrderDetail" Relationship="Self.FK__OrderDeta__Order__625A9A57" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="CardTable" Relationship="Self.FK__Orders__CardNumb__0880433F" FromRole="Orders" ToRole="CardTable" />
+    <NavigationProperty Name="OrderDetail" Relationship="Self.FK__OrderDeta__Order__2EA5EC27" FromRole="Orders" ToRole="OrderDetails" />
   </EntityType>
   <EntityType Name="OTP_Validation">
     <Key>
@@ -103,7 +104,7 @@
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CostPerUnit" Type="Int32" Nullable="false" />
     <Property Name="AvailableQuantity" Type="Int32" />
-    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__634EBE90" FromRole="Products" ToRole="OrderDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__2F9A1060" FromRole="Products" ToRole="OrderDetails" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -151,7 +152,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__CardNumb__3587F3E0">
+  <Association Name="FK__Orders__CardNumb__0880433F">
     <End Role="CardTable" Type="Self.CardTable" Multiplicity="1" />
     <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
@@ -187,7 +188,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Order__625A9A57">
+  <Association Name="FK__OrderDeta__Order__2EA5EC27">
     <End Role="Orders" Type="Self.Order" Multiplicity="1" />
     <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -199,7 +200,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Produ__634EBE90">
+  <Association Name="FK__OrderDeta__Produ__2F9A1060">
     <End Role="Products" Type="Self.Product" Multiplicity="1" />
     <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -234,7 +235,7 @@
       <End Role="Bank" EntitySet="Banks" />
       <End Role="ConsumerTable" EntitySet="ConsumerTables" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__CardNumb__3587F3E0" Association="Self.FK__Orders__CardNumb__3587F3E0">
+    <AssociationSet Name="FK__Orders__CardNumb__0880433F" Association="Self.FK__Orders__CardNumb__0880433F">
       <End Role="CardTable" EntitySet="CardTables" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
@@ -246,11 +247,11 @@
       <End Role="ConsumerTable" EntitySet="ConsumerTables" />
       <End Role="OTP_Validation" EntitySet="OTP_Validation" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Order__625A9A57" Association="Self.FK__OrderDeta__Order__625A9A57">
+    <AssociationSet Name="FK__OrderDeta__Order__2EA5EC27" Association="Self.FK__OrderDeta__Order__2EA5EC27">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Produ__634EBE90" Association="Self.FK__OrderDeta__Produ__634EBE90">
+    <AssociationSet Name="FK__OrderDeta__Produ__2F9A1060" Association="Self.FK__OrderDeta__Produ__2F9A1060">
       <End Role="Products" EntitySet="Products" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>

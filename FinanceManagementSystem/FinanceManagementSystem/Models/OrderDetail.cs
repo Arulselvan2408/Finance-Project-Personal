@@ -19,7 +19,6 @@ namespace FinanceManagementSystem.Models
         public int Quantity { get; set; }
         public int TotalAmount { get; set; }
         public double ProcessingFee { get; set; }
-        public int EMI_Tenure_in_Months { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

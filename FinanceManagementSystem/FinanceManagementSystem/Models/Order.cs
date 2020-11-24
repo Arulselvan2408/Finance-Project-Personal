@@ -16,6 +16,8 @@ namespace FinanceManagementSystem.Models
     {
         public int OrderID { get; set; }
         public System.DateTime OrderDate { get; set; }
+        public double AmountPayable { get; set; }
+        public int EMI_Tenure_In_Months { get; set; }
         public double BillAmountperMonth { get; set; }
         public long CardNumber { get; set; }
     

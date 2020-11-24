@@ -12,7 +12,6 @@ namespace FinanceManagementSystem.Models
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-
     [DataContract]
     public partial class Product
     {

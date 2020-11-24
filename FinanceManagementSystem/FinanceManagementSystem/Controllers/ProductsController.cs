@@ -31,7 +31,6 @@ namespace FinanceManagementSystem.Controllers
             {
                 return NotFound();
             }
-
             return Ok(product);
         }
 
