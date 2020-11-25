@@ -1,9 +1,59 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <form #form="ngForm" (ngSubmit)="OnSubmit(ProductName,ProductDetails, Image,CostPerUnit, AvailableQuantity)">
-        <div>
-            <label for="ProductID">ProductID: </label> &nbsp;&nbsp;
-            <input type="number" name="ProductID" #ProductID required [(ngModel)]="product.ProductID" #name=ngModel>
-        </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Product Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of Products">
+                <td><img [src]='p.Image' height="215px" width="150px"></td>
+                <td> PRODUCT NAME: {{p.ProductName}}<br>
+                    PRODUCT DETAILS: {{p.ProductDetails}}<br>
+                    COST: {{p.CostPerUnit}}<br>
+                    <a [routerLink]="['/ProductInfo/',p.ProductID]">Buy Now</a>
+                </td>
+                <hr>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<hr>
+
+<!--<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Product Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img [src]='productinfo.Image' height="150px" width="120px"></td>
+                <td> PRODUCT NAME: {{productinfo.ProductName}}<br>
+                    PRODUCT DETAILS: {{productinfo.ProductDetails}}<br>
+                    COST: {{productinfo.CostPerUnit}}<br>
+                </td>
+                <hr>
+            </tr>
+        </tbody>
+    </table>
+</div>-->
+
+
+<div class="container">
+    <form #form="ngForm">
         <div>
             <label for="ProductName">ProductName: </label> &nbsp;&nbsp;
             <input type="text" name="ProductName" #ProductName required [(ngModel)]="product.ProductName" #name=ngModel>
@@ -14,8 +64,7 @@
         </div>
         <div>
             <label for="Image">Image: </label>&nbsp;&nbsp;
-            <img [src]="imageUrl"  style="width:100px; height:100px">
-            <input type="file"  #Image accept="image/*" (change)="handleFileInput($event.target.files)" name="Image" required [(ngModel)]="product.Image" #name=ngModel>
+            <input type="text"  #Image  name="Image" required [(ngModel)]="product.Image" #name=ngModel><br>
         </div>
         <div>
             <label for="CostPerUnit">CostPerUnit: </label>&nbsp;&nbsp;
@@ -27,48 +76,4 @@
         </div>
         <button class="btn btn-info">Add Product</button>&nbsp;&nbsp;&nbsp;&nbsp;
     </form>
-</div>
-
-<div class="container">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Product Image</th>
-                <th>Product Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let p of Products">
-                <td><img [src]='p.Image'></td>
-                <td> PRODUCT NAME: {{p.ProductName}}<br>
-                    PRODUCT DETAILS: {{p.ProductDetails}}<br>
-                    COST: {{p.CostPerUnit}}<br>
-                    <button class="btn btn-success" type="submit" (click)="fetchProductbyID(p.ProductID)">BUY NOW</button>
-                </td>
-                <hr>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-
-<div class="container">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Product Image</th>
-                <th>Product Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><img [src]='prod.Image'></td>
-                <td> PRODUCT NAME: {{prod.ProductName}}<br>
-                    PRODUCT DETAILS: {{prod.ProductDetails}}<br>
-                    COST: {{prod.CostPerUnit}}<br>
-                </td>
-                <hr>
-            </tr>
-        </tbody>
-    </table>
 </div>

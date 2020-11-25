@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from 'src/Models/Product.Model';
 import {ProductService} from 'src/Services/Product.Service';
+
 import {NgForm} from '@angular/forms';
 
 
@@ -25,6 +26,6 @@ export class ProductPageComponent implements OnInit {
       this.Products=data;    
     })
   }
-
+ 
  
 }

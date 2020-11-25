@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Product Image</th>
+                    <th>Product Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of prod">
+                    <td><img [src]="p.Image" height="215px" width="150px"></td>
+                    <td> PRODUCT NAME: {{p.ProductName}}<br>
+                        PRODUCT DETAILS: {{p.ProductDetails}}<br>
+                        COST: {{p.CostPerUnit}}<br>
+                        <button class="btn btn-success" type="submit">BUY NOW</button>
+                    </td>
+                    <hr>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<div class="container">
+    <p style="text-align: center; text-decoration: underline; font-size: large;">Terms & Conditions</p>
+    <ul>
+        <li>You can purchase the products with No cost EMI by paying Minimum processing fee</li>
+        <li>The processing fee is 2 percent of Cost of the product</li>
+        <li>You can select EMI tenure upto 12 Months</li>
+        <li>The Joining Fee and Total Limit Depends on the Card Type(Gold, Titanium) that user choose</li>
+    </ul>
+</div>
+<div class="container">
+    <p style="text-align: center; text-decoration: underline; font-size: large;">Eligibility</p>
+    <ul>
+        <li>The user Registering for the Card should have active Bank Account</li>
+    </ul>
+</div>
+
+

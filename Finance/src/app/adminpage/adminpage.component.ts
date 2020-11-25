@@ -17,30 +17,52 @@ export class AdminpageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchuserinfo();
+    this.fetchactivateduserinfo();
   }
   userinformation;
   fetchuserinfo(){
     this.adminservice.getuserinfo().subscribe(
       (data)=>{this.userinformation=data});
   }
+activateduserinfo;
+  fetchactivateduserinfo(){
+    this.adminservice.getactivateduserinfo().subscribe(
+      (data)=>{this.activateduserinfo=data;}
+    );
+  }
   result;
 
   del;
   removeuserinfo(username){
     this.adminservice.deluserinfo(username).subscribe(
-      (data=>{this.del=data;})
+      (data=>{this.del=data; window.alert(this.del); this.fetchuserinfo(); this.fetchactivateduserinfo();})
     )
-  }
-  updateUserInfo(user:UserInformation){
-    console.log();
-    this.adminservice.putuser(user).subscribe(
-      (data)=>{this.result=data;})
-      window.alert("Record updated")
     
   }
+  updateUserInfo(useredit:UserInformation){
+    
+    this.adminservice.updateuser(useredit).subscribe(
+      (data)=>{this.result=data;this.fetchuserinfo();this.fetchactivateduserinfo();window.alert(this.result)}
+      )
+    
+  }
+  useredit:any={}
   insertUserInfo(){
     this.adminservice.insertuser(this.userinfo).subscribe(
-      (data)=>{this.result=data;}
+      (data)=>{this.useredit=data;}
+    )
+  }
+  
+
+  fetchuserbyName(username){
+    this.adminservice.getuserbyusername(username).subscribe(
+      (data)=>{this.useredit=data; console.log(this.useredit)}
+    )
+  }
+  activation;
+  activateuser(useractivation){
+    this.adminservice.activateuser(useractivation).subscribe(
+      (data)=>{this.activation=data; window.alert(this.activation);this.fetchuserinfo();this.fetchactivateduserinfo();}
     )
   }
 }

@@ -1,8 +1,8 @@
 export class Product{
-    ProductID:number;
-    ProductName:string;
-    ProductDetails:string;
+    ProductID?:number;
+    ProductName?:string;
+    ProductDetails?:string;
     Image?:string;
-    CostPerUnit:number;
+    CostPerUnit?:number;
     AvailableQuantity?:number;
 }

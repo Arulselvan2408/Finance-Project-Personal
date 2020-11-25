@@ -8,18 +8,27 @@ export class AdminService{
     constructor(private http:HttpClient){
         this.list=[];
     }
-    readonly adminURL="https://localhost:44342/api/Admin/GetUserInfo";
+    readonly adminURL="https://localhost:44372/api/Admin/GetUserInfo";
     getuserinfo(){
         return this.http.get(this.adminURL);
     }
-    public deluserinfo(username){
-        return this.http.delete("https://localhost:44342/api/Admin?UserName="+username); 
+    getactivateduserinfo(){
+        return this.http.get("https://localhost:44372/api/ActiveUser/GetActivatedUserInfo");
     }
-    public putuser(user:UserInformation){
-        return this.http.put("https://localhost:44342/api/Admin?UserName="+user.UserName, user)
+    public deluserinfo(username){
+        return this.http.delete("https://localhost:44372/api/Admin?UserName="+username); 
+    }
+    public getuserbyusername(username){
+        return this.http.get("https://localhost:44372/api/Admin?UserName="+username);
+    }
+    public updateuser(user:UserInformation){
+        return this.http.put("https://localhost:44372/api/Admin?UserName="+user.UserName, user)
     }
     public insertuser(user){
-        return this.http.post("https://localhost:44342/api/Admin/insertInfo", user)
+        return this.http.post("https://localhost:44372/api/Admin", user)
+    }
+    public activateuser(useractivation){
+        return this.http.get("https://localhost:44372/api/ActivateUser/useractivate?UserName="+useractivation);
     }
     
     

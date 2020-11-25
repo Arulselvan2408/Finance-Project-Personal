@@ -16,7 +16,6 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Address</th>
-            <th>Password</th>
             <th>Card Type</th>
             <th>Bank Name</th>
             <th>IFSC Code</th>
@@ -32,15 +31,52 @@
                 <td>{{u.PhoneNo}}</td>
                 <td>{{u.Email}}</td>
                 <td>{{u.Address}}</td>
-                <td>{{u.Password}}</td>
                 <td>{{u.CardType}}</td>
                 <td>{{u.SelectBank}}</td>
                 <td>{{u.IFSC_Code}}</td>
                 <td>{{u.AccountNumber}}</td>
                 <td>{{u.ActivationStatus}}</td>
-                <td><button class="btn btn-info" type="submit">Edit</button></td>
+                <td><button class="btn btn-info" type="submit" (click)="fetchuserbyName(u.UserName)">Edit</button></td>
                 <td><button class="btn btn-danger" type="submit" (click)="removeuserinfo(u.UserName)">Delete</button></td>
-                <td><button class="btn btn-success" type="submit" disabled="(u.ActivationStatus=false)">Activate</button></td>
+                <td><button class="btn btn-success" type="submit" (click)="activateuser(u.UserName)">Activate</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<hr>
+
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Card Type</th>
+            <th>Bank Name</th>
+            <th>IFSC Code</th>
+            <th>Account Number</th>
+            <th>Activation Status</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of activateduserinfo">
+                <td>{{u.UserName}}</td>
+                <td>{{u.Name}}</td>
+                <td>{{u.DateofBirth}}</td>
+                <td>{{u.PhoneNo}}</td>
+                <td>{{u.Email}}</td>
+                <td>{{u.Address}}</td>
+                <td>{{u.CardType}}</td>
+                <td>{{u.SelectBank}}</td>
+                <td>{{u.IFSC_Code}}</td>
+                <td>{{u.AccountNumber}}</td>
+                <td>{{u.ActivationStatus}}</td>
+                <td><button class="btn btn-info" type="submit" (click)="fetchuserbyName(u.UserName)">Edit</button></td>
             </tr>
 
         </tbody>
@@ -49,50 +85,69 @@
 <div>
     <form #userform="ngForm">
         <div>
-            <label for="UserName">UserName: </label> &nbsp;&nbsp;
-            <input type="text" name="UserName" required [(ngModel)]="userinfo.UserName" #name=ngModel>
-        </div>
-        <div>
             <label for="Name">Name: </label> &nbsp;&nbsp;
-            <input type="text" name="Name" required [(ngModel)]="userinfo.Name" #name=ngModel>
+            <input type="text" name="Name" required [(ngModel)]="useredit.Name" #Name=ngModel>
         </div>
-        <div>
-            <label for="DateofBirth">DateofBirth: </label> &nbsp;&nbsp;
-            <input type="date" name="DateofBirth" required [(ngModel)]="userinfo.DateofBirth" #name=ngModel>
+        <div *ngIf="!Name?.valid && (Name?.dirty|| Name?.touched)"class= "error">
+            <div *ngIf="Name.errors.required">
+                <small class="text-danger">Name is Required</small>
+            </div>
         </div>
+        
         <div>
-            <label for="PhoneNo">PhoneNo: </label> &nbsp;&nbsp;
-            <input type="number" name="PhoneNo" required [(ngModel)]="userinfo.PhoneNo" #name=ngModel>
+            <label for="PhoneNo">Phone Number: </label> &nbsp;&nbsp;
+            <input type="number" name="PhoneNo" required [(ngModel)]="useredit.PhoneNo" #PhoneNo=ngModel pattern="^[6-9][0-9]{9}$" maxlength="10" minlength="10">
+        </div>
+        <div *ngIf="!PhoneNo?.valid && (PhoneNo?.dirty|| PhoneNo?.touched)"class= "error">
+            <div *ngIf="PhoneNo.errors.required">
+                <small class="text-danger">Phone Number is Required</small>
+            </div>
+            <div *ngIf=PhoneNo.errors.pattern>
+                <small class="text-danger">Invalid Phone Number</small>
+            </div>
         </div>
         <div>
             <label for="Email">Email: </label> &nbsp;&nbsp;
-            <input type="text" name="Email" required [(ngModel)]="userinfo.Email" #name=ngModel>
+            <input type="text" name="Email" [(ngModel)]="useredit.Email" #Email=ngModel required email>
+        </div>
+        <div *ngIf="!Email?.valid && (Email?.dirty|| Email?.touched)"class= "error">
+            <div *ngIf="Email.errors.required">
+                <small class="text-danger">Email is Required</small>
+            </div>
+            <div *ngIf=Email.errors.email>
+                <small class="text-danger">Enter a valid email-address</small>
+            </div>
+    
         </div>
         <div>
             <label for="Address">Address: </label> &nbsp;&nbsp;
-            <input type="text" name="Address" required [(ngModel)]="userinfo.Address" #name=ngModel>
+            <input type="text" name="Address" required [(ngModel)]="useredit.Address" #Address=ngModel>
         </div>
-        <div>
-            <label for="Password">Password: </label> &nbsp;&nbsp;
-            <input type="password" name="Password" required [(ngModel)]="userinfo.Password" #name=ngModel>
+        <div *ngIf="!Address?.valid && (Address?.dirty|| Address?.touched)"class= "error">
+            <div *ngIf="Address.errors.required">
+                <small class="text-danger">Address is Required</small>
+            </div>
         </div>
-        <div>
+        <!--<div>
             <label for="CardType">CardType: </label> &nbsp;&nbsp;
-            <input type="text" name="CardType" required [(ngModel)]="userinfo.CardType" #name=ngModel>
-        </div>  
-        <div>
+            <input type="radio" name="CardType" value="Gold"[(ngModel)]=useredit.CardType>Gold &nbsp;&nbsp;
+        <input type="radio" name="CardType" value="Titanium"[(ngModel)]=useredit.CardType>Titanium
+        </div> -->
+        <!--<div>
             <label for="SelectBank">SelectBank: </label> &nbsp;&nbsp;
-            <input type="text" name="SelectBank" required [(ngModel)]="userinfo.SelectBank" #name=ngModel>
+            <input type="text" name="SelectBank" required [(ngModel)]="useredit.SelectBank" #name=ngModel>
         </div> 
         <div>
             <label for="IFSC_Code">IFSC_Code: </label> &nbsp;&nbsp;
-            <input type="text" name="IFSC_Code" required [(ngModel)]="userinfo.IFSC_Code" #name=ngModel>
+            <input type="text" name="IFSC_Code" required [(ngModel)]="useredit.IFSC_Code" #name=ngModel>
         </div> 
         <div>
             <label for="AccountNumber">AccountNumber: </label> &nbsp;&nbsp;
-            <input type="number" name="AccountNumber" required [(ngModel)]="userinfo.AccountNumber" #name=ngModel>
-        </div> 
-        <button type="submit" class="btn btn-success"(click)="insertUserInfo()">Submit</button>         
+            <input type="number" name="AccountNumber" required [(ngModel)]="useredit.AccountNumber" #name=ngModel>
+        </div>-->
+         
+        <button type="submit" class="btn btn-success"(click)="updateUserInfo(useredit)">Update</button>         
         
     </form>
 </div>
+         
