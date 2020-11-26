@@ -61,10 +61,10 @@
                </div>
                <div *ngIf="!UserName?.valid && (UserName?.dirty|| UserName?.touched)" class="error">
                   <div *ngIf="UserName.errors.required">
-                     <small class="text-danger">Name is Required</small>
+                     <small class="text-danger">UserName is Required</small>
                   </div>
                   <div *ngIf="UserName.errors.minlength">
-                     <small class="text-danger">Name should have minimum three characters</small>
+                     <small class="text-danger">User Name should have minimum five characters</small>
                   </div>
                </div>
                <div class="form-group">

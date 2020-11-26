@@ -18,6 +18,10 @@ import { ProductinfopageComponent } from './productinfopage/productinfopage.comp
 import { ProductInfoService } from 'src/Services/Productinfo.Service';
 import { ConsumerregisterComponent } from './consumerregister/consumerregister.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {CardService} from 'src/Services/DashBoard.Service';
+import { AdminlayoutComponent } from './adminlayout/adminlayout.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
     ProductinfopageComponent,
     ConsumerregisterComponent,
     PasswordMatchDirective,
-    LoginpageComponent
+    LoginpageComponent,
+    DashboardComponent,
+    AdminlayoutComponent,
+    PagenotfoundComponent
    
   ],
   imports: [
@@ -37,7 +44,7 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
     AppRoutingModule,
     HttpClientModule,FormsModule
   ],
-  providers: [ProductService, AdminService, ImageUploadService, ProductInfoService, Registerservice],
+  providers: [ProductService, AdminService, ImageUploadService, ProductInfoService, Registerservice,CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

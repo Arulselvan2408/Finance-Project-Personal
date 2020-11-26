@@ -13,7 +13,7 @@ namespace FinanceManagementSystem.Image
 {
     public class AdminController : ApiController
     {
-        FinanceEntities1 db = new FinanceEntities1();
+        FinanceEntities3 db = new FinanceEntities3();
         
         
         public HttpResponseMessage GetUserInfo()

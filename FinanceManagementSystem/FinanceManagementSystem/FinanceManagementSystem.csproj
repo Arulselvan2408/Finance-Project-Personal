@@ -170,9 +170,12 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ActivateUserController.cs" />
     <Compile Include="Controllers\ActiveUserController.cs" />
+    <Compile Include="Controllers\CardDashboardController.cs" />
+    <Compile Include="Controllers\emirepaymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PagenotfoundController.cs" />
     <Compile Include="Controllers\ProductInfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserRegistrationController.cs" />
@@ -234,6 +237,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AdminVM.cs" />
+    <Compile Include="ViewModel\CreditDetails.cs" />
+    <Compile Include="ViewModel\ProductPurchase.cs" />
+    <Compile Include="ViewModel\RecentTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

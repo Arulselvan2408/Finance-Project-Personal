@@ -15,10 +15,10 @@ namespace FinanceManagementSystem.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class FinanceEntities1 : DbContext
+    public partial class FinanceEntities3 : DbContext
     {
-        public FinanceEntities1()
-            : base("name=FinanceEntities1")
+        public FinanceEntities3()
+            : base("name=FinanceEntities3")
         {
         }
     

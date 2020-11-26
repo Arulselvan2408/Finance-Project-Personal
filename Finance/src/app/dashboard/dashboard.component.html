@@ -1,0 +1,84 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a (click)="RedirectProduct()">Products</a></li>
+            
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div align="center">
+        <div>
+            <div>
+                <h2>Card Dashboard</h2>
+            </div>
+            <div class="jumbotron mb-0" >
+                <div class="panel panel-default" >
+                    <div class="panel-body" *ngFor= "let c of carddetails">
+                        <div>
+                        
+                        <p>Card Number:{{c.CardNumber}}</p>
+                        <p>Name:{{c.Name}}</p>
+                        <p>ValidTill:{{c.ValidTill}}</p>
+                        <p>CardType:{{c.CardType}}</p>
+                    </div>
+                    
+                    </div>
+                </div>
+                <div class="panel panel-success mb-0">
+                    <div class="panel-heading">Activated</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <div *ngFor="let credit of creditdetails">
+            <p>TOTAL CREDIT:{{credit.TotalCredit}}</p>
+            <p>CREDIT USED:{{credit.Creditused}}</p>
+            <p>REMAINING CREDIT:{{credit.RemainingCredit}}</p>
+        </div>
+        <div>
+            <div align="center">
+                <h4>PRODUCTS PURCHASED</h4>
+            </div>
+           <div *ngFor="let p of purchasedetails">
+            <p>PRODUCT NAME:{{p.ProductName}}</p>
+            <p>AMOUNT:{{p.CostPerUnit}}</p>
+            <p>PAID:{{p.AmountPayable}}</p>
+            <P>BALANCE:{{p.Balance}}</P>
+        </div>
+        </div>
+        <div class="container">
+            <div align="center">
+                <h4>RECENT TRANSACTIONS</h4>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="tableCols">
+                        
+                        <th>PRODUCT</th>
+                        <th>ORDER DATE</th>
+                        <th>AMOUNT PAID</th>
+                        <th>EMI TENURE IN MONTHS</th>
+                        <th>EMI AMOUNT per MONTH</th>
+                        <th>REMAINING EMI TENURE</th>
+                        <th>LAST PAYMENT DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center" *ngFor="let t of transactiondetails;let i=index">
+                        
+                        <td>{{t.ProductName}}</td>
+                        <td>{{t.OrderDate}}</td>
+                        <td>{{t.AmountPayable}}</td>
+                        <td>{{t.EMI_Tenure_In_Months}}</td>
+                        <td>{{t.BillAmountperMonth}}</td>
+                        <td>{{t.Remaining_EMI_Tenures}}</td>
+                        <td>{{t.LastPaymentDate}}</td>
+                        <td><button class="btn btn-primary" (click)="EmiRepayment(t.OrderID)">Pay Now</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

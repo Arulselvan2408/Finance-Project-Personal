@@ -71,6 +71,8 @@
     <Property Name="EMI_Tenure_In_Months" Type="int" Nullable="false" />
     <Property Name="BillAmountperMonth" Type="float" Nullable="false" />
     <Property Name="CardNumber" Type="bigint" Nullable="false" />
+    <Property Name="Remaining_EMI_Tenures" Type="int" />
+    <Property Name="LastPaymentDate" Type="date" />
   </EntityType>
   <EntityType Name="OTP_Validation">
     <Key>

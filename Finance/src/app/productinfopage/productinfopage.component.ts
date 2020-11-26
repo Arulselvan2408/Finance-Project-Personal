@@ -3,6 +3,7 @@ import{ImageUploadService} from 'src/Services/uploadImage.service';
 import{NgForm} from '@angular/forms';
 import { Product } from 'src/Models/Product.Model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import{Router} from '@angular/router';
 import { ProductInfoService } from 'src/Services/Productinfo.Service';
 
 @Component({
@@ -14,8 +15,7 @@ export class ProductinfopageComponent implements OnInit {
 
 
   constructor(private imageuploadservice:ImageUploadService, 
-    private route:ActivatedRoute, private productinfoservice:ProductInfoService) {
-    
+    private route:ActivatedRoute, private productinfoservice:ProductInfoService, private router:Router) {
    }
    
   prod:any={};
@@ -31,12 +31,12 @@ export class ProductinfopageComponent implements OnInit {
       (data)=>{this.prod=data;}
     )
   }
-  Username="Arulselvan";
+  Username=sessionStorage.getItem('username');
   order
   orderProduct(productid, Quantity:HTMLInputElement, EMI:HTMLInputElement, Username)
   {
     this.productinfoservice.orderProduct(productid,parseInt(Quantity.value), parseInt(EMI.value), Username).subscribe(
-      (data)=>{this.order= data; window.alert(this.order)}
+      (data)=>{this.order= data; window.alert(this.order); this.router.navigate(['/DashBoard'])}
     )
   }
 

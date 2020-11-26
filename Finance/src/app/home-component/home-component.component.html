@@ -1,11 +1,4 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-        </ul>
-    </div>
-</nav>
+
 <div class="container">
         <table class="table table-hover">
             <thead>
@@ -20,7 +13,7 @@
                     <td> PRODUCT NAME: {{p.ProductName}}<br>
                         PRODUCT DETAILS: {{p.ProductDetails}}<br>
                         COST: {{p.CostPerUnit}}<br>
-                        <button class="btn btn-success" type="submit">BUY NOW</button>
+                        <button class="btn btn-success" type="submit" (click)="RedirectLogin()">BUY NOW</button>
                     </td>
                     <hr>
                 </tr>

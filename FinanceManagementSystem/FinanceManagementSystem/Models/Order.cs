@@ -20,6 +20,8 @@ namespace FinanceManagementSystem.Models
         public int EMI_Tenure_In_Months { get; set; }
         public double BillAmountperMonth { get; set; }
         public long CardNumber { get; set; }
+        public Nullable<int> Remaining_EMI_Tenures { get; set; }
+        public Nullable<System.DateTime> LastPaymentDate { get; set; }
     
         public virtual CardTable CardTable { get; set; }
         public virtual OrderDetail OrderDetail { get; set; }

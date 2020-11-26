@@ -14,5 +14,8 @@ export class Registerservice{
         debugger;
         return this.http.post("https://localhost:44372/api/UserRegistration/Adduser",consumertable);
     }
+    Errorpage(){
+        return this.http.get("https://localhost:44372/api/Pagenotfound/ErrorPage");
+    }
 
 }

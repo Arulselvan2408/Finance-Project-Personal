@@ -10,7 +10,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class UserRegistrationController : ApiController
     {
-        FinanceEntities1 db = new FinanceEntities1();
+        FinanceEntities3 db = new FinanceEntities3();
         [HttpPost]
         public HttpResponseMessage Adduser(ConsumerTable consumer)
         {
@@ -41,6 +41,12 @@ namespace FinanceManagementSystem.Controllers
                     }
                     else
                     {
+                        DateTime currentdate = System.DateTime.Now;
+                        TimeSpan time = currentdate.Subtract(consumer.DateofBirth);
+                        if (time.Days < 3650)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, "You are Not eligible. The user should be 10 years old or above");
+                        }
                         byte[] encData_byte = new byte[consumer.Password.Length];
                         encData_byte = System.Text.Encoding.UTF8.GetBytes(consumer.Password);
                         string encodedpassword = Convert.ToBase64String(encData_byte);

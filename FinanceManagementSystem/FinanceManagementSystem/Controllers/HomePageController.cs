@@ -10,7 +10,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class HomePageController : ApiController
     {
-        FinanceEntities1 db = new FinanceEntities1();
+        FinanceEntities3 db = new FinanceEntities3();
         public HttpResponseMessage getProduct()
         {
             var ProductList = (from prod in db.Products

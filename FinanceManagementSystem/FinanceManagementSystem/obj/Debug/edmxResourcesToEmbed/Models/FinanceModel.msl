@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FinanceModelStoreContainer" CdmEntityContainer="FinanceEntities1">
+  <EntityContainerMapping StorageEntityContainer="FinanceModelStoreContainer" CdmEntityContainer="FinanceEntities3">
     <EntitySetMapping Name="Admins">
       <EntityTypeMapping TypeName="FinanceModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
@@ -77,6 +77,8 @@
           <ScalarProperty Name="EMI_Tenure_In_Months" ColumnName="EMI_Tenure_In_Months" />
           <ScalarProperty Name="BillAmountperMonth" ColumnName="BillAmountperMonth" />
           <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="Remaining_EMI_Tenures" ColumnName="Remaining_EMI_Tenures" />
+          <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

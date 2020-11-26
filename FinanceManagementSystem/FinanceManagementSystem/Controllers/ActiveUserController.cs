@@ -10,7 +10,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class ActiveUserController : ApiController
     {
-        FinanceEntities1 db = new FinanceEntities1();
+        FinanceEntities3 db = new FinanceEntities3();
         public HttpResponseMessage GetActivatedUserInfo()
         {
             var UserList = (from con in db.ConsumerTables

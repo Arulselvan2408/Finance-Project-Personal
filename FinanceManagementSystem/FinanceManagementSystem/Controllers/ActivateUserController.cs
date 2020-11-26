@@ -10,7 +10,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class ActivateUserController : ApiController
     {
-        FinanceEntities1 db = new FinanceEntities1();
+        FinanceEntities3 db = new FinanceEntities3();
         //Activating the user
         [HttpGet]
         public HttpResponseMessage useractivate(string username)

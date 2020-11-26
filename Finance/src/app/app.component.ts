@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { Router} from '@angular/router';
 
 
 @Component({
@@ -9,8 +9,22 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 })
 export class AppComponent {
   title = 'Finance';
-  constructor(private sanitizer: DomSanitizer) {}
-public getSantizeUrl(url:any) {
-    return this.sanitizer.bypassSecurityTrustUrl(url);
+  loginsession;
+  username;
+  constructor(private router:Router) {}
+ngDoCheck()
+{
+  if(sessionStorage.getItem('username')){
+    this.loginsession= true;
+    this.username=sessionStorage.getItem('username');
+  }
+  else{
+    this.loginsession=false;
+  }
+}
+logOff(){
+  sessionStorage.clear();
+  this.loginsession=false;
+  this.router.navigate(['Home']);
 }
 }

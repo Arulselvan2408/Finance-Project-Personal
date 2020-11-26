@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from 'src/Models/Product.Model';
 import{HomePageService} from 'src/Services/Homepage.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-home-component',
   templateUrl: './home-component.component.html',
@@ -9,7 +10,7 @@ import{HomePageService} from 'src/Services/Homepage.service';
 export class HomeComponentComponent implements OnInit {
 
  product:Product;
-  constructor(private homepageservice:HomePageService) { 
+  constructor(private homepageservice:HomePageService, private router:Router) { 
     this.product= new Product();
   }
  
@@ -21,5 +22,8 @@ getproduct(){
   this.homepageservice.getProducts().subscribe(
     (data)=>{this.prod=data}
   )
+}
+RedirectLogin(){
+  this.router.navigate(['/Login']);
 }
 }

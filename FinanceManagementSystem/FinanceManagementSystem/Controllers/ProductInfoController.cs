@@ -12,7 +12,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class ProductInfoController : ApiController
     {
-        FinanceEntities1 db = new FinanceEntities1();
+        FinanceEntities3 db = new FinanceEntities3();
 
         // GET: api/Products/5
         [ResponseType(typeof(Product))]
@@ -47,9 +47,9 @@ namespace FinanceManagementSystem.Controllers
                               select c.CardNumber).FirstOrDefault();
 
             Product pro = new Product();
-            if (quantity == 0)
+            if (quantity< 0)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "Quantity Should Not be zero");
+                return Request.CreateResponse(HttpStatusCode.OK, "Quantity Should Not be zero or negative");
             }
             else if (quantity > pro.AvailableQuantity)
             {
@@ -66,7 +66,7 @@ namespace FinanceManagementSystem.Controllers
                 {
                     try
                     {
-                        db.Orders.Add(new Order { OrderDate = DateTime.Now, AmountPayable = AmountPayable, EMI_Tenure_In_Months = EMI, BillAmountperMonth = EMIperMonth, CardNumber = cardnumber });
+                        db.Orders.Add(new Order { OrderDate = DateTime.Now, AmountPayable = AmountPayable, EMI_Tenure_In_Months = EMI, BillAmountperMonth = EMIperMonth, CardNumber = cardnumber, Remaining_EMI_Tenures=EMI, LastPaymentDate=null });
                         db.SaveChanges();
                     }
                     catch(Exception)

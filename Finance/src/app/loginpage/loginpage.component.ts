@@ -32,7 +32,7 @@ export class LoginpageComponent implements OnInit {
           this.loginservice.loginCheck();
           if (data != 'Invalid') {
             this.loginservice.loginuservariable = true;
-            this.router.navigate(['/ProductList']);
+            this.router.navigate(['/DashBoard']);
           }
           else {
             this.router.navigate(['/Login']);
@@ -44,6 +44,9 @@ export class LoginpageComponent implements OnInit {
     else{
       this.err="Please enter Valid Credentials !!!";
     }
+  }
+  redirectlogin(){
+    this.router.navigate(['/Register']);
   }
 }
 
