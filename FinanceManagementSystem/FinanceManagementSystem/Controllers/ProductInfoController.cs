@@ -84,6 +84,10 @@ namespace FinanceManagementSystem.Controllers
                                                where c.CardNumber == cardnumber
                                                select c).FirstOrDefault();
                         cardtable.RemainingCredit = cardtable.RemainingCredit - AmountPayable;
+                        Product Pro1 = (from p in db.Products
+                                       where p.ProductID == productid
+                                       select p).FirstOrDefault();
+                        Pro1.AvailableQuantity = Pro1.AvailableQuantity - quantity;
                         db.SaveChanges();
 
                     }
@@ -91,7 +95,7 @@ namespace FinanceManagementSystem.Controllers
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, e);
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, "Order Placed & Purchase Successfull");
+                    return Request.CreateResponse(HttpStatusCode.OK, "Order Placed & Purchase Successfull. Your EMI amount Per Month is"+" "+EMIperMonth);
                 }
             }
         }

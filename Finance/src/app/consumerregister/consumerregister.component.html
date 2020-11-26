@@ -1,135 +1,161 @@
 <div class="container">
-    <div class="row">
-    <div class="col-6">
-    <div class="jumbotron">
-       <h3>Registration</h3>
-       <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" autocomplete="off" [mustMatch]="['Password','Confirmpassword']" novalidate>
-           <div class="form-group"> 
-               <label>Name</label>
-               <input type="text" name="Name" class="form-control" [(ngModel)]="consumer.Name" #Name="ngModel"
-               [ngClass]="{ 'is-invalid': f.submitted && Name.invalid }" required>
-              <div *ngIf="f.submitted && Name.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="Name.errors.required">Name is required</div>
-             </div> 
-           </div>
-           <div class="form-group">
-           <label>Date of Birth</label>
-           <input type="date" name="DateofBirth" class="form-control" [(ngModel)]="consumer.DateofBirth" #DateofBirth="ngModel" 
-           [ngClass]="{ 'is-invalid': f.submitted && DateofBirth.invalid }" required>
-              <div *ngIf="f.submitted && DateofBirth.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="DateofBirth.errors.required">Date of Birth is required</div>
-             </div> 
-          </div>
-          <div class="form-group">
-           <label>Email ID</label>
-           <input type="text" name="Email" class="form-control" [(ngModel)]="consumer.Email" #Email="ngModel" 
-           [ngClass]="{ 'is-invalid': f.submitted && Email.invalid }" required email>
-              <div *ngIf="f.submitted && Email.invalid" class="invalid-feedback">
-                <div class="text-danger" *ngIf="Email.errors.required">Email is required</div>
-                <div class="text-danger" *ngIf="Email.errors?.email">Email must be a valid email address</div>
-            
-           </div>
-          </div>
-          <div class="form-group">
-           <label>Phone No.</label>
-           <input type="text" name="PhoneNo" class="form-control" [(ngModel)]="consumer.PhoneNo" #PhoneNo="ngModel" 
-           [ngClass]="{ 'is-invalid': f.submitted && PhoneNo.invalid }" required minlength="6" maxlength="13" pattern="^[0-9]*$">
-              <div *ngIf="f.submitted && PhoneNo.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="PhoneNo.errors.required">Phone Number is required</div>
-                   <div class="text-danger" *ngIf="PhoneNo.errors?.pattern || PhoneNo.errors?.maxlength || PhoneNo.errors?.minlength">Phone number must be at least 10 numbers </div>
-                </div> 
-          </div>
-          <div class="form-group">
-           <label>User Name</label>
-           <input type="text" name="UserName" class="form-control"  [(ngModel)]="consumer.UserName" #UserName="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && UserName.invalid }" required>
-              <div *ngIf="f.submitted && UserName.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="UserName.errors.required">UserName is required</div>
-             </div>
-          </div>
-          <div class="form-group">
-           <label>Password</label>
-           <input type="password" name="Password" class="form-control" [(ngModel)]="consumer.Password" #Password="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && Password.invalid}" required minlength="6">
-              <div *ngIf="f.submitted && Password.invalid" class="invalid-feedback">
-               <div class="text-danger" *ngIf="Password.errors.required">Password is required</div>
-               <div class="text-danger" *ngIf="Password.errors?.minlength">Password must be at least 6 characters</div>
-            </div>
-                      
-          </div>
-          <div class="form-group">
-           <label>Confirm Password</label>
-           <input type="password" name="Confirmpassword" class="form-control" [(ngModel)]="consumer.Confirmpassword" #Confirmpassword="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && Confirmpassword.invalid }" required>
-              <div *ngIf="f.submitted && Confirmpassword.invalid" class="invalid-feedback">
-               <div class="text-danger" *ngIf="Confirmpassword.errors.required">Confirm Password is required</div>
-               <div class="text-danger" *ngIf="Confirmpassword.errors.mustMatch">Passwords must match</div>
-            </div>
-               <!--<div class="text-danger" *ngIf="f.Confirmpassword.errors?.MustMatch">Passwords must match</div>-->
-       </div>
-          <div class="form-group">
-           <label>Address</label>
-           <input type="text" name="Address" class="form-control" [(ngModel)]="consumer.Address" #Address="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && Address.invalid }" required>
-              <div *ngIf="f.submitted && Address.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="Address.errors.required">Address is required</div>
-            </div>
-            
-          </div>
-          <div class="form-group">
-            <label for="CardType">CardType: </label> <br>
-            
-            <input type="radio" name="CardType" value="Gold"[(ngModel)]="consumer.CardType" #CardType="ngModel">Gold <br>
-            <input type="radio" name="CardType" value="Titanium"[(ngModel)]="consumer.CardType" #CardType="ngModel">Titanium 
-         
-   
-           <!--<label>Card Type</label><br>
-           <label class="radio-inline" *ngFor="let c of cardtype">
-           <input ng-model="CardType" type="radio" name="CardType" value={{c}}>{{c}}
-          </label>-->
-          <!--<label class="radio-inline">
-           <input type="radio" name="CardType" >Titanium
-          </label>-->
-          
-       </div>
-          <div class="form-group">
-            <label>Select Bank</label>
-            <select name="SelectBank" class="form-control" [(ngModel)]="consumer.SelectBank" #SelectBank="ngModel">
-            <!--[ngClass]="{ 'is-invalid': submitted && f.SelectBank.errors }">
-               <div *ngIf="submitted && f.SelectBank.errors" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="f.SelectBank.errors.required">This field is required</div>
-              </div>-->
-                <option selected>select any option</option>
-                <option *ngFor="let b of bank">{{b}}</option>
-            </select>
-           </div>
-           <div class="form-group">
-           <label>Savings Account Number</label>
-           <input type="number" name="AccountNumber" class="form-control" [(ngModel)]="consumer.AccountNumber" #AccountNumber="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && AccountNumber.invalid }" required minlength="8">
-              <div *ngIf="f.submitted && AccountNumber.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="AccountNumber.errors.required">Saving Account No. is required</div>
-                   <div class="text-danger" *ngIf="AccountNumber.errors?.minlength ">Saving Account No. must be minimum of 8 digits</div>
-              </div>
-              
-          </div>
-          <div class="form-group">
-           <label>IFSC code</label>
-           <input type="text" name="IFSC_code" class="form-control" [(ngModel)]="consumer.IFSC_code" #IFSC_code="ngModel"
-           [ngClass]="{ 'is-invalid': f.submitted && IFSC_code.invalid }" required>
-              <div *ngIf="f.submitted && IFSC_code.invalid" class="invalid-feedback">
-                   <div class="text-danger" *ngIf="IFSC_code.errors.required">IFSC code is required</div>
-              </div>
-          </div>
-        
-          <!--<button class="btn btn-primary" type="submit"  [disabled]="registerForm.valid">Register</button>-->
-          <button class="btn btn-primary" type="submit"  (click)="onSubmit()">Register</button>
-          <button class="btn btn-light" type="reset" >Reset</button>
-          <br>
-          <br>
-          <div>Already a member? <a href="#">Login Here</a></div>
-       </form>
-     </div>  
+   <div class="row">
+      <div class="col-6">
+         <div class="jumbotron">
+            <h3 style="text-align: center; color: darkblue;">User Registration</h3>
+            <form #registerform="ngForm" (ngSubmit)="onSubmit()">
+               <div class="form-group">
+                  <label for="Name">Name</label><br>
+                  <input type="text" name="Name" class="form-control" [(ngModel)]="consumer.Name" #Name=ngModel required
+                     minlength="3">
+               </div>
+               <div *ngIf="!Name?.valid && (Name?.dirty|| Name?.touched)" class="error">
+                  <div *ngIf="Name.errors.required">
+                     <small class="text-danger">Name is Required</small>
+                  </div>
+                  <div *ngIf="Name.errors.minlength">
+                     <small class="text-danger">Name should have minimum three characters</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="DateofBirth">Date of Birth</label><br>
+                  <input type="date" name="DateofBirth" class="form-control" [(ngModel)]="consumer.DateofBirth"
+                     #DateofBirth=ngModel>
+                  <div *ngIf="!DateofBirth?.valid && (DateofBirth?.dirty|| DateofBirth?.touched)" class="error">
+                     <div *ngIf="DateofBirth.errors.required">
+                        <small class="text-danger">Date of Birth is Required</small>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="Email">Email</label><br>
+                  <input type="text" name="Email" class="form-control" [(ngModel)]="consumer.Email" #Email=ngModel
+                     required email>
+               </div>
+               <div *ngIf="!Email?.valid && (Email?.dirty|| Email?.touched)" class="error">
+                  <div *ngIf="Email.errors.required">
+                     <small class="text-danger">Email is Required</small>
+                  </div>
+                  <div *ngIf=Email.errors.email>
+                     <small class="text-danger">Enter a valid email-address</small>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label for="PhoneNo">Phone Number</label><br>
+                  <input type="number" name="PhoneNo" class="form-control" [(ngModel)]="consumer.PhoneNo"
+                     #PhoneNo=ngModel required maxlength="10" minlength="10" pattern="^[6-9][0-9]{9}$">
+               </div>
+               <div *ngIf="!PhoneNo?.valid && (PhoneNo?.dirty|| PhoneNo?.touched)" class="error">
+                  <div *ngIf="PhoneNo.errors.required">
+                     <small class="text-danger">Phone Number is Required</small>
+                  </div>
+                  <div *ngIf=PhoneNo.errors.pattern>
+                     <small class="text-danger">Invalid Phone Number</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="UserName">User Name</label><br>
+                  <input type="text" name="UserName" class="form-control" [(ngModel)]="consumer.UserName"
+                     #UserName=ngModel required minlength="5">
+               </div>
+               <div *ngIf="!UserName?.valid && (UserName?.dirty|| UserName?.touched)" class="error">
+                  <div *ngIf="UserName.errors.required">
+                     <small class="text-danger">Name is Required</small>
+                  </div>
+                  <div *ngIf="UserName.errors.minlength">
+                     <small class="text-danger">Name should have minimum three characters</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="Password">Password</label><br>
+                  <input type="password" name="Password" class="form-control" [(ngModel)]="consumer.Password"
+                     #Password=ngModel required minlength="6">
+               </div>
+               <div *ngIf="!Password?.valid && (Password?.dirty|| Password?.touched)" class="error">
+                  <div *ngIf="Password.errors.required">
+                     <small class="text-danger">Password is Required</small>
+                  </div>
+                  <div *ngIf="Password.errors.minlength">
+                     <small class="text-danger">Password should contain minimum 6 characters</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="ConfirmPassword">Confirm Password</label><br>
+                  <input type="password" name="ConfirmPassword" class="form-control"
+                     [(ngModel)]="consumer.ConfirmPassword" #ConfirmPassword=ngModel required
+                     passwordmatchvalidator="Password">
+               </div>
+               <div *ngIf="!ConfirmPassword?.valid && (ConfirmPassword?.dirty|| ConfirmPassword?.touched)"
+                  class="error">
+                  <div *ngIf="ConfirmPassword.errors.required">
+                     <small class="text-danger">Confirm Password is Required</small>
+                  </div>
+                  <div *ngIf="ConfirmPassword.errors.notEqual && !ConfirmPassword.errors.required">
+                     <small class="text-danger">Password & confirm Password should Match</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="Address">Address: </label> &nbsp;&nbsp;
+                  <input type="text" name="Address" class="form-control" required [(ngModel)]="consumer.Address"
+                     #Address=ngModel>
+               </div>
+               <div *ngIf="!Address?.valid && (Address?.dirty|| Address?.touched)" class="error">
+                  <div *ngIf="Address.errors.required">
+                     <small class="text-danger">Address is Required</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="CardType">Card Type: </label> &nbsp;&nbsp;
+                  <input type="radio" name="CardType" value="Gold" [(ngModel)]=consumer.CardType #CardType=ngModel>Gold &nbsp;&nbsp;
+                  <input type="radio" name="CardType" value="Titanium" [(ngModel)]=consumer.CardType #CardType=ngModel>Titanium
+               </div>
+               <div *ngIf="!CardType?.valid && (CardType?.dirty|| CardType?.touched)" class="error">
+                  <div *ngIf="CardType.errors.required">
+                     <small class="text-danger">CardType is Required</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="SelectBank">SelectBank: </label> &nbsp;&nbsp;
+                  <select class="form-control" name="SelectBank" required [(ngModel)]="consumer.SelectBank" #SelectBank=ngModel>SelectBank
+                     <option selected value="Indian Bank">Indian Bank</option>
+                     <option value="HDFC Bank">HDFC Bank</option>
+                     <option value="CanaraBank">CanaraBank</option>
+                     <option value="State Bank of India">State Bank of India</option>
+                     <option value="Punjab National Bank">Punjab National Bank</option>
+                  </select>
+               </div>
+               <div class="form-group">
+                  <label for="AccountNumber">Saving Account Number</label><br>
+                  <input type="number" name="AccountNumber" class="form-control" [(ngModel)]="consumer.AccountNumber"
+                     #AccountNumber=ngModel required>
+               </div>
+               <div *ngIf="!AccountNumber?.valid && (AccountNumber?.dirty|| AccountNumber?.touched)" class="error">
+                  <div *ngIf="AccountNumber.errors.required">
+                     <small class="text-danger">Saving Account Number is Required</small>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="IFSC_Code">IFSC Code</label><br>
+                  <input type="text" name="IFSC_Code" class="form-control" [(ngModel)]="consumer.IFSC_Code"
+                     #IFSC_Code=ngModel required minlength="11" maxlength="11">
+               </div>
+               <div *ngIf="!IFSC_Code?.valid && (IFSC_Code?.dirty|| IFSC_Code?.touched)" class="error">
+                  <div *ngIf="IFSC_Code.errors.required">
+                     <small class="text-danger">IFSC Code is Required</small>
+                  </div>
+                  <div *ngIf="IFSC_Code.errors.minlength">
+                     <small class="text-danger">IFSC Code should contain 11 characters</small>
+                  </div>
+               </div>
+
+               <button class="btn btn-primary" type="submit">Register</button>
+               <button class="btn btn-light" type="reset">Reset</button>
+               <br>
+               <br>
+               <div>Already a member? <a href="#">Login Here</a></div>
+            </form>
+         </div>
+      </div>
    </div>
-   </div>
-   </div>
+</div>

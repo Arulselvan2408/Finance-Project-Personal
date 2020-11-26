@@ -5,6 +5,7 @@ import{ProductService} from 'src/Services/Product.Service'
 import{AdminService} from 'src/Services/admin.Service'
 import{ImageUploadService} from 'src/Services/uploadImage.service';
 import{Registerservice} from 'src/Services/Register.Service';
+import{PasswordMatchDirective} from 'src/app/PasswordMatching/passwordmatch.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,8 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { ProductinfopageComponent } from './productinfopage/productinfopage.component';
 import { ProductInfoService } from 'src/Services/Productinfo.Service';
 import { ConsumerregisterComponent } from './consumerregister/consumerregister.component';
-import{MustMatchDirective} from './PasswordMatching/must-match.directive';
+import { LoginpageComponent } from './loginpage/loginpage.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import{MustMatchDirective} from './PasswordMatching/must-match.directive';
     HomeComponentComponent,
     ProductinfopageComponent,
     ConsumerregisterComponent,
-    MustMatchDirective
+    PasswordMatchDirective,
+    LoginpageComponent
+   
   ],
   imports: [
     BrowserModule,

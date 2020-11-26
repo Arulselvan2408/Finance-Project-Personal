@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Consumer } from 'src/Models/Consumer.Model';
+import { NgForm } from '@angular/forms';
+import { LoginService } from 'src/Services/Login.Service';
+@Component({
+  selector: 'app-loginpage',
+  templateUrl: './loginpage.component.html',
+  styleUrls: ['./loginpage.component.css']
+})
+export class LoginpageComponent implements OnInit {
+
+  constructor(private loginservice: LoginService, private router: Router) { }
+  consumer:any = {};
+  loggedinempdetails;
+  err;
+  ngOnInit(): void {
+  }
+  doLogin() {
+    if (this.consumer.UserName=="Rajiv" && this.consumer.Password=="admin@123") {
+      debugger;
+      this.loginservice.loginsessionvariable = true;
+      sessionStorage.setItem('username', 'Rajiv');
+      this.loginservice.loginCheck();
+      this.router.navigate(['/Admin']);
+    }
+    else if (this.consumer != null) {
+      this.loginservice.userlogin(this.consumer).subscribe(
+        (data) => {
+          this.loggedinempdetails = data as string;
+          sessionStorage.setItem('username', this.loggedinempdetails);
+          this.loginservice.loginCheck();
+          if (data != 'Invalid') {
+            this.loginservice.loginuservariable = true;
+            this.router.navigate(['/ProductList']);
+          }
+          else {
+            this.router.navigate(['/Login']);
+            this.err = "Invalid Username & Password";
+            window.alert(this.err);
+          }
+        });
+    }
+    else{
+      this.err="Please enter Valid Credentials !!!";
+    }
+  }
+}
+

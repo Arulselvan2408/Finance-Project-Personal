@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import{Registerservice} from 'src/Services/Register.Service';
-//import{Consumer} from 'src/Models/Consumer.Model';
+import{Consumer} from 'src/Models/Consumer.Model';
 @Component({
   selector: 'app-consumerregister',
   templateUrl: './consumerregister.component.html',
   styleUrls: ['./consumerregister.component.css']
 })
 export class ConsumerregisterComponent implements OnInit {
+  //consumer:Consumer;
+  consumer:Consumer={};
   bank:string[]=["Indian Bank","HDFC Bank","Canara Bank","State Bank of India","Punjab National Bank"]
-  constructor(private registerservice:Registerservice) { }
-
-  ngOnInit(): void {
+  constructor(private registerservice:Registerservice) { 
+    //this.consumer= new Consumer();
   }
-consumer:any={};
+    
+  ngOnInit(): void {
+    
+  }
+
 result;
 onSubmit(){
   this.registerservice.Adduser(this.consumer).subscribe(
