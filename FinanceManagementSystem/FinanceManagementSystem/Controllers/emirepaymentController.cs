@@ -23,7 +23,8 @@ namespace FinanceManagementSystem.Controllers
                 DateTime currentdate = System.DateTime.Now;
                 TimeSpan time = currentdate.Subtract((DateTime)orderinfo.LastPaymentDate);
                 DateTime nextdue = (DateTime)orderinfo.LastPaymentDate;
-                DateTime nextduedate = nextdue.AddDays(30);
+                string nextduedate = nextdue.AddDays(30).ToLongDateString();
+
                 if (time.Days < 30)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, "The Payment for this Month is made already. Next Due Date is" + " " + nextduedate);

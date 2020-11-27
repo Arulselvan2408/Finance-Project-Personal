@@ -11,6 +11,7 @@ namespace FinanceManagementSystem.Controllers
     public class UserRegistrationController : ApiController
     {
         FinanceEntities3 db = new FinanceEntities3();
+        #region ConsumerRegistration
         [HttpPost]
         public HttpResponseMessage Adduser(ConsumerTable consumer)
         {
@@ -84,5 +85,6 @@ namespace FinanceManagementSystem.Controllers
                 }
             }
         }
+        #endregion
     }
 }

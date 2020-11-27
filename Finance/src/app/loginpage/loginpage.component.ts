@@ -35,9 +35,10 @@ export class LoginpageComponent implements OnInit {
             this.router.navigate(['/DashBoard']);
           }
           else {
-            this.router.navigate(['/Login']);
             this.err = "Invalid Username & Password";
+            sessionStorage.clear();
             window.alert(this.err);
+            this.router.navigate(['/Login']);
           }
         });
     }

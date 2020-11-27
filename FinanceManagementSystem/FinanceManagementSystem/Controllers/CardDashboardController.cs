@@ -48,21 +48,18 @@ namespace FinanceManagementSystem.Controllers
 
         [HttpGet]
         [Route("api/CardDashboard/GetProducts")]
-        public IEnumerable GetProductspurchased(string username)
+        public HttpResponseMessage GetProductspurchased(string username)
         {
-            List<ProductPurchase> productslist = new List<ProductPurchase>();
-            var pl = (from p in db.Products
-                      join od in db.OrderDetails on
-                      p.ProductID equals od.ProductID
-                      join o in db.Orders on od.OrderID
-                      equals o.OrderID
-                      join c in db.CardTables on o.CardNumber equals c.CardNumber
-                      where c.Name == username
-                      select new { od.OrderID, p.ProductName, p.CostPerUnit, o.AmountPayable, Balance = (c.TotalCredit - o.AmountPayable) }
 
-                    ).ToList();
-
-            return pl;
+            var productlist = (from card in db.CardTables
+                               join o in db.Orders on card.CardNumber equals o.CardNumber
+                               join od in db.OrderDetails on o.OrderID equals od.OrderID
+                               join p in db.Products on od.ProductID equals p.ProductID
+                               orderby o.OrderDate descending
+                               where card.Name == username
+                               select new { p.ProductName, o.AmountPayable, AmountPaid = ((o.EMI_Tenure_In_Months - o.Remaining_EMI_Tenures) * o.BillAmountperMonth), Balance = o.AmountPayable - ((o.EMI_Tenure_In_Months - o.Remaining_EMI_Tenures) * o.BillAmountperMonth), od.Quantity}).ToList().Take(2);
+            return Request.CreateResponse(HttpStatusCode.OK, productlist);
+                             
         }
         #endregion
 

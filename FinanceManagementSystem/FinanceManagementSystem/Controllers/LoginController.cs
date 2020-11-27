@@ -11,6 +11,7 @@ namespace FinanceManagementSystem.Controllers
     public class LoginController : ApiController
     {
         FinanceEntities3 db = new FinanceEntities3();
+        #region LoginVerification
         [HttpPost]
         public HttpResponseMessage verifylogin(ConsumerTable logininfo)
         {
@@ -27,5 +28,6 @@ namespace FinanceManagementSystem.Controllers
             }
 
         }
+        #endregion
     }
 }
