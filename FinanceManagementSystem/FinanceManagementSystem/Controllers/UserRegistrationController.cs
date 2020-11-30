@@ -10,8 +10,17 @@ namespace FinanceManagementSystem.Controllers
 {
     public class UserRegistrationController : ApiController
     {
-        FinanceEntities3 db = new FinanceEntities3();
+        FinanceEntities db = new FinanceEntities();
         #region ConsumerRegistration
+        /// <summary>
+        /// checks whether the username already exists or not;
+        /// checks the user age above 10 or not;
+        /// checking for unique email and phone number;
+        /// encrypting the password;
+        /// adding the user in the database;
+        /// </summary>
+        /// <param name="consumer"></param>
+        /// <returns></returns>
         [HttpPost]
         public HttpResponseMessage Adduser(ConsumerTable consumer)
         {
@@ -25,7 +34,7 @@ namespace FinanceManagementSystem.Controllers
             else 
             {
                 var email= (from c in db.ConsumerTables
-                            where c.UserName == consumer.UserName
+                            where c.Email==consumer.Email
                             select c.Email).ToList();
                 if (email.Count > 0)
                 {
@@ -34,7 +43,7 @@ namespace FinanceManagementSystem.Controllers
                 else
                 {
                     var phone= (from c in db.ConsumerTables
-                                where c.UserName == consumer.UserName
+                                where c.PhoneNo==consumer.PhoneNo
                                 select c.PhoneNo).ToList();
                     if (phone.Count > 0)
                     {
@@ -68,23 +77,26 @@ namespace FinanceManagementSystem.Controllers
                         try
                         {
                             db.ConsumerTables.Add(ct);
-                            Admin ad = new Admin();
-                            ad.AdminID = 4001;
-                            ad.AdminName = "Rajiv";
-                            ad.UserName = consumer.UserName;
-                            ad.ActivationStatus = false;
-                            db.Admins.Add(ad);
                             db.SaveChanges();
+                            db.adduserinadmin(consumer.UserName);
+                            db.SaveChanges();                   
                             return Request.CreateResponse(HttpStatusCode.OK, "Registered Successfully!!!");
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
-                            return Request.CreateResponse(HttpStatusCode.OK, e.Message);
+                            return Request.CreateResponse(HttpStatusCode.OK, "The mailid or the Name given is too large");
                         }
                     }
                 }
             }
         }
         #endregion
+        [HttpGet]
+        public HttpResponseMessage getbanks()
+        {
+            var banks = (from b in db.Banks
+                         select b.BankName).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, banks);
+        }
     }
 }

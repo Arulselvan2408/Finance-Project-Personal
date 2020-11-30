@@ -10,7 +10,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class ActivateUserController : ApiController
     {
-        FinanceEntities3 db = new FinanceEntities3();
+        FinanceEntities db = new FinanceEntities();
         //Activating the user
         [HttpGet]
         public HttpResponseMessage useractivate(string username)
@@ -48,7 +48,7 @@ namespace FinanceManagementSystem.Controllers
             }
             catch (Exception)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "UserActivated Already");
+                return Request.CreateResponse(HttpStatusCode.OK, "Activation Failed");
             }
         }
     }

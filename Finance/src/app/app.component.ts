@@ -27,4 +27,7 @@ logOff(){
   this.loginsession=false;
   this.router.navigate(['Home']);
 }
+RedirectDashboard(){
+  this.router.navigate(['/DashBoard']);
+}
 }

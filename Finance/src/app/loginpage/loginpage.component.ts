@@ -30,12 +30,18 @@ export class LoginpageComponent implements OnInit {
           this.loggedinempdetails = data as string;
           sessionStorage.setItem('username', this.loggedinempdetails);
           this.loginservice.loginCheck();
-          if (data != 'Invalid') {
+          if (data != 'Invalid' && data !='Not Activated by Admin') {
             this.loginservice.loginuservariable = true;
             this.router.navigate(['/DashBoard']);
           }
-          else {
+          else if (data !='Not Activated by Admin'){
             this.err = "Invalid Username & Password";
+            sessionStorage.clear();
+            window.alert(this.err);
+            this.router.navigate(['/Login']);
+          }
+          else{
+            this.err = "You Verification is under Process or Activation by Admin is Pending";
             sessionStorage.clear();
             window.alert(this.err);
             this.router.navigate(['/Login']);

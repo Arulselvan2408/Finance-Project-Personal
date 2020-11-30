@@ -9,23 +9,34 @@
         <tbody>
             <tr>
                 <td><img [src]='prod.Image' height="200px" width="160px"></td>
-                <td> PRODUCT NAME: {{prod.ProductName}}<br>
-                    PRODUCT DETAILS: {{prod.ProductDetails}}<br>
-                    COST: {{prod.CostPerUnit}}<br>
+                <td style="font-size:20px;"> 
+                    <div>PRODUCT NAME: {{prod.ProductName}}</div>
+                    <br>
+                    <div>PRODUCT DETAILS: {{prod.ProductDetails}}</div>
+                    <br>
+                    <div>COST: {{prod.CostPerUnit|currency:'INR':true}}</div><br>
                 </td>
                 <hr>
             </tr>
         </tbody>
     </table>
 </div>
+<br>
+<br>
 <div class="container">
     <div>
         <label for="Quantity">Quantity</label> &nbsp;&nbsp;
-        <input type="number" required #Quantity min="1"><br><br>
+        <select #Quantity style="width:100px">
+            <option selected value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br><br>
     </div>
     <div>
         <label for="EMI">EMI</label>&nbsp;&nbsp;&nbsp;&nbsp;
-        <select #EMI>
+        <select #EMI style="width: 100px;">
         <option selected value="3">3 Months</option>
         <option value="6">6 Months</option>
         <option value="9">9 Months</option>
@@ -51,6 +62,7 @@
     <li>You can purchase the products with No cost EMI by paying Minimum processing fee</li>
     <li>The processing fee is 2 percent of Cost of the product</li>
     <li>You can select EMI tenure upto 12 Months</li>
+    <li>User can buy maximum quantity of 5</li>
 </ul>
 </div>
 

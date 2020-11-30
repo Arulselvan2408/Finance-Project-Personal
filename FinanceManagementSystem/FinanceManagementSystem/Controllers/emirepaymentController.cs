@@ -10,7 +10,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class emirepaymentController : ApiController
     {
-        FinanceEntities3 db = new FinanceEntities3();
+        FinanceEntities db = new FinanceEntities();
         #region EMI REPAYMENT
         [HttpGet]
         public HttpResponseMessage EmiRepayment(int orderid)

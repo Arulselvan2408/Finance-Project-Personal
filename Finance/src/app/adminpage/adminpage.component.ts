@@ -17,32 +17,27 @@ export class AdminpageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchuserinfo();
-    this.fetchactivateduserinfo();
+    
   }
   userinformation;
   fetchuserinfo(){
     this.adminservice.getuserinfo().subscribe(
       (data)=>{this.userinformation=data});
   }
-activateduserinfo;
-  fetchactivateduserinfo(){
-    this.adminservice.getactivateduserinfo().subscribe(
-      (data)=>{this.activateduserinfo=data;}
-    );
-  }
+
   result;
 
   del;
   removeuserinfo(username){
     this.adminservice.deluserinfo(username).subscribe(
-      (data=>{this.del=data; window.alert(this.del); this.fetchuserinfo(); this.fetchactivateduserinfo();})
+      (data=>{this.del=data; window.alert(this.del); this.fetchuserinfo();})
     )
     
   }
   updateUserInfo(useredit:UserInformation){
     
     this.adminservice.updateuser(useredit).subscribe(
-      (data)=>{this.result=data;this.fetchuserinfo();this.fetchactivateduserinfo();window.alert(this.result)}
+      (data)=>{this.result=data;this.fetchuserinfo();window.alert(this.result)}
       )
     
   }
@@ -62,7 +57,7 @@ activateduserinfo;
   activation;
   activateuser(useractivation){
     this.adminservice.activateuser(useractivation).subscribe(
-      (data)=>{this.activation=data; window.alert(this.activation);this.fetchuserinfo();this.fetchactivateduserinfo();}
+      (data)=>{this.activation=data; window.alert(this.activation);this.fetchuserinfo();}
     )
   }
 }

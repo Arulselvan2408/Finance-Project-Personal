@@ -13,29 +13,36 @@ namespace FinanceManagementSystem.Image
 {
     public class AdminController : ApiController
     {
-        FinanceEntities3 db = new FinanceEntities3();
+        FinanceEntities db = new FinanceEntities();
         
         
         public HttpResponseMessage GetUserInfo()
         {
-            var UserList = (from con in db.ConsumerTables
-                            join ad in db.Admins on con.UserName equals ad.UserName
-                            where ad.ActivationStatus==false
-                            select new
-                            {
-                                con.UserName,
-                                con.Name,
-                                con.DateofBirth,
-                                con.PhoneNo,
-                                con.Email,
-                                con.Address,                    
-                                con.CardType,
-                                con.SelectBank,
-                                con.IFSC_Code,
-                                con.AccountNumber,
-                                ad.ActivationStatus
-                            }).ToList();
-            return Request.CreateResponse(HttpStatusCode.OK, UserList);
+            try
+            {
+                var UserList = (from con in db.ConsumerTables
+                                join ad in db.Admins on con.UserName equals ad.UserName
+                                where ad.ActivationStatus == false
+                                select new
+                                {
+                                    con.UserName,
+                                    con.Name,
+                                    con.DateofBirth,
+                                    con.PhoneNo,
+                                    con.Email,
+                                    con.Address,
+                                    con.CardType,
+                                    con.SelectBank,
+                                    con.IFSC_Code,
+                                    con.AccountNumber,
+                                    ad.ActivationStatus
+                                }).ToList();
+                return Request.CreateResponse(HttpStatusCode.OK, UserList);
+            }
+            catch (Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, "Userdata Not Found");
+            }
         }
 
         public HttpResponseMessage DeleteUserInfo(string username)
@@ -43,7 +50,7 @@ namespace FinanceManagementSystem.Image
             ConsumerTable CT = db.ConsumerTables.Find(username);
             if (CT == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotAcceptable);
+                return Request.CreateResponse(HttpStatusCode.OK, "Userdata not Found");
                 //return NotFound();
             }
             else
@@ -62,7 +69,7 @@ namespace FinanceManagementSystem.Image
                 }
                 catch (Exception)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, "You cannot delete Active user");
+                    return Request.CreateResponse(HttpStatusCode.OK, "UserInfo not Deleted");
                 }
             }
            
@@ -106,19 +113,12 @@ namespace FinanceManagementSystem.Image
             {
                 var userdata = (from con in db.ConsumerTables
                                 where con.UserName == username
-                                select con).FirstOrDefault();
-                userdata.UserName = consumer.UserName;
-                userdata.Name = consumer.UserName;
+                                select con).FirstOrDefault();               
+                userdata.Name = consumer.Name;
                 userdata.PhoneNo = consumer.PhoneNo;
                 userdata.Email = consumer.Email;
                 userdata.Address = consumer.Address;
-                userdata.Password = consumer.Password;
-                userdata.CardType = consumer.CardType;
-                userdata.SelectBank = consumer.SelectBank;
-                userdata.IFSC_Code = consumer.IFSC_Code;
-                userdata.AccountNumber = consumer.AccountNumber;
                 db.SaveChanges();
-
                 return Request.CreateResponse(HttpStatusCode.OK, "Record Updated");
             }
             catch (Exception)

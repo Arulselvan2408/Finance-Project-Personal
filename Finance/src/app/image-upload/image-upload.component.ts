@@ -12,7 +12,6 @@ import { Orderinfo } from 'src/Models/orderinfo.model';
 export class ImageUploadComponent implements OnInit {
  
   Products;
-  fileToUpload: File= null;
 product:Product;
   constructor(private imageuploadservice:ImageUploadService, private productinfoservice:ProductInfoService) {
     this.product= new Product();

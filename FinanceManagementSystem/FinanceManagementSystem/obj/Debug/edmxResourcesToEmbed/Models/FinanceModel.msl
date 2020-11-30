@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="FinanceModelStoreContainer" CdmEntityContainer="FinanceEntities3">
+  <EntityContainerMapping StorageEntityContainer="FinanceModelStoreContainer" CdmEntityContainer="FinanceEntities">
     <EntitySetMapping Name="Admins">
       <EntityTypeMapping TypeName="FinanceModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
@@ -113,6 +113,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="adduserinadmin" FunctionName="FinanceModel.Store.adduserinadmin" />
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FinanceModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FinanceModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FinanceModel.Store.sp_dropdiagram" />

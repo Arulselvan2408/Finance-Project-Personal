@@ -12,7 +12,7 @@ import { ProductInfoService } from 'src/Services/Productinfo.Service';
   styleUrls: ['./productinfopage.component.css']
 })
 export class ProductinfopageComponent implements OnInit {
-
+  quan:[1,2,3,4,5];
 
   constructor(private imageuploadservice:ImageUploadService, 
     private route:ActivatedRoute, private productinfoservice:ProductInfoService, private router:Router) {

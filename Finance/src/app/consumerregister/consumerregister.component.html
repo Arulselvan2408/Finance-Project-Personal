@@ -118,11 +118,12 @@
                <div class="form-group">
                   <label for="SelectBank">SelectBank: </label> &nbsp;&nbsp;
                   <select class="form-control" name="SelectBank" required [(ngModel)]="consumer.SelectBank" #SelectBank=ngModel>SelectBank
-                     <option selected value="Indian Bank">Indian Bank</option>
+                     <option *ngFor="let b of banks" value={{b}}>{{b}}</option>
+                     <!--<option selected value="Indian Bank">Indian Bank</option>
                      <option value="HDFC Bank">HDFC Bank</option>
                      <option value="CanaraBank">CanaraBank</option>
                      <option value="State Bank of India">State Bank of India</option>
-                     <option value="Punjab National Bank">Punjab National Bank</option>
+                     <option value="Punjab National Bank">Punjab National Bank</option>-->
                   </select>
                </div>
                <div class="form-group">

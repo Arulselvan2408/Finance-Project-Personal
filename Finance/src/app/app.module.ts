@@ -21,7 +21,9 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {CardService} from 'src/Services/DashBoard.Service';
 import { AdminlayoutComponent } from './adminlayout/adminlayout.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component'
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ActiveuserComponent } from './activeuser/activeuser.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component'
     LoginpageComponent,
     DashboardComponent,
     AdminlayoutComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ForgetpasswordComponent,
+    ActiveuserComponent
    
   ],
   imports: [

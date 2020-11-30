@@ -1,12 +1,4 @@
-<!--<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-        </ul>
-    </div>
-</nav>-->
-<h3 style="text-align: center; color: darkblue;">User Whose Activation is Pending</h3>
+<h3 style="text-align: center; color: darkblue;">Activated Users</h3>
 <div class="container-fluid">
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -25,10 +17,10 @@
         </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let u of userinformation">
+            <tr *ngFor="let u of activateduserinfo">
                 <td>{{u.UserName}}</td>
                 <td>{{u.Name}}</td>
-                <td>{{u.DateofBirth|date:'mediumDate'}}</td>
+                <td>{{u.DateofBirth| date:'mediumDate'}}</td>
                 <td>{{u.PhoneNo}}</td>
                 <td>{{u.Email}}</td>
                 <td>{{u.Address}}</td>
@@ -38,16 +30,13 @@
                 <td>{{u.AccountNumber}}</td>
                 <td>{{u.ActivationStatus}}</td>
                 <td><button class="btn btn-info" type="submit" (click)="fetchuserbyName(u.UserName)">Edit</button></td>
-                <td><button class="btn btn-danger" type="submit" (click)="removeuserinfo(u.UserName)">Delete</button></td>
-                <td><button class="btn btn-success" type="submit" (click)="activateuser(u.UserName)">Activate</button></td>
             </tr>
 
         </tbody>
     </table>
 </div>
-<hr>
-
-<hr>
+<br>
+<br>
 <h3 style="text-align: center; color: darkblue;">Edit UserInfo</h3>
 <div class="jumbotran">
     <form>
@@ -117,4 +106,3 @@
         
     </form>
 </div>
-         

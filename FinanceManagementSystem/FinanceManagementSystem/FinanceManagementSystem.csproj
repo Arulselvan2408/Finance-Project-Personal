@@ -172,9 +172,11 @@
     <Compile Include="Controllers\ActiveUserController.cs" />
     <Compile Include="Controllers\CardDashboardController.cs" />
     <Compile Include="Controllers\emirepaymentController.cs" />
+    <Compile Include="Controllers\GetOTPController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OTPverificationController.cs" />
     <Compile Include="Controllers\PagenotfoundController.cs" />
     <Compile Include="Controllers\ProductInfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />

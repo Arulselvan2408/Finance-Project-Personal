@@ -23,7 +23,14 @@ getproduct(){
     (data)=>{this.prod=data}
   )
 }
-RedirectLogin(){
-  this.router.navigate(['/Login']);
+RedirectLogin(productid:number){
+  if(sessionStorage.getItem('username'))
+  {
+    this.router.navigate(['ProductInfo/',productid ]);
+  }
+  else{
+    this.router.navigate(['/Login']);
+  }
+  
 }
 }

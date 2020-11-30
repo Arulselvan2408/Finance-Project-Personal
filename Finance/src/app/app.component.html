@@ -1,10 +1,13 @@
-<head></head>
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Welcome to Finance Management</a>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome to Finance Management</a>
     </div>
     <ul class="nav navbar-nav">
+      <li *ngIf="loginsession && (username!='Rajiv')"><a (click)="RedirectDashboard()">Dashboard</a></li>
+      <li *ngIf="loginsession && (username!='Rajiv')"><a routerLink="ProductList">Products</a></li>
+      <li *ngIf="loginsession && (username=='Rajiv')"><a routerLink="Admin">Activate User</a></li>
+      <li *ngIf="loginsession && (username=='Rajiv')"><a routerLink="ActiveUser">Activated User Info</a></li>
       <li *ngIf="loginsession"><a>Hello {{username}}</a></li>
       <li *ngIf="!loginsession"><a routerLink="Register">Register</a></li>
       <li *ngIf="!loginsession"><a routerLink="Login">Login</a></li>
@@ -12,86 +15,83 @@
     </ul>
   </div>
 </nav>
+<body>
 <router-outlet></router-outlet>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+</body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="footer">
 
-<div class="footer">
+    <div class="container text-center text-md-left">
 
-  <div class="container text-center text-md-left">
+      <div class="row">
+        <!-- Grid column -->
 
-    <div class="row">
-      <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
 
-      <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+          <h5 class="font-weight-bold text-uppercase mb-4"><b>About us</b></h5>
+          <p>We provide Consumers to buy the products using our financial services with No Cost EMI from the comfort of
+            your Home through online</p>
 
-        <h5 class="font-weight-bold text-uppercase mb-4"><b>About us</b></h5>
-        <p>We provide Consumers to buy the products using our financial services with No Cost EMI from the comfort of your Home through online</p>
+        </div>
 
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+          <h5 class="font-weight-bold text-uppercase mb-4"><b>Address</b></h5>
+
+          <p><span class="glyphicon glyphicon-home"></span> 4th Floor,Building 1,IT Park,Highway Road,Mumbai-400708</p>
+
+        </div>
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+          <h5 class="font-weight-bold text-uppercase mb-4"><b>Contact us</b></h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <p>
+                <span class="glyphicon glyphicon-envelope">&nbsp;</span> <a
+                  href="mailto:financemanagement@gmail.com">financemanagement@gmail.com</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="glyphicon glyphicon-phone"></span> + 91 9888 858 888
+              </p>
+            </li>
+            <li>
+              <p>
+                <span class="glyphicon glyphicon-phone"></span> + 91 9888 848 888
+              </p>
+            </li>
+          </ul>
+
+        </div>
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
+
+          <h5 class="font-weight-bold text-uppercase mb-4"><b>Follow Us On</b></h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="#" class="fa fa-facebook"></a> &nbsp;
+              <a href="#" class="fa fa-twitter"></a>&nbsp;
+              <a href="#" class="fa fa-instagram"></a>&nbsp;
+              <a href="#" class="fa fa-youtube"></a>&nbsp;
+            </li>
+          </ul>
+
+        </div>
       </div>
-     
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
 
-        <h5 class="font-weight-bold text-uppercase mb-4"><b>Address</b></h5>
-
-        <p><span class="glyphicon glyphicon-home"></span>  4th Floor,Building 1,IT Park,Highway Road,Mumbai-400708</p>
-
-      </div>
-
-      <!-- Grid column -->
-      <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
-
-        <h5 class="font-weight-bold text-uppercase mb-4"><b>Contact us</b></h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <p>
-              <span class="glyphicon glyphicon-envelope">&nbsp;</span> <a href="financemanagement@gmail.com">financemanagement@gmail.com</a> 
-            </p>
-          </li>
-          <li>
-            <p>
-              <span class="glyphicon glyphicon-phone"></span>  + 91 9888 858 888
-            </p>
-          </li>
-          <li>
-            <p>
-              <span class="glyphicon glyphicon-phone"></span>  + 91 9888 848 888
-            </p>
-          </li>
-        </ul>
-
-      </div>
-      <!-- Grid column -->
-      <div class="col-md-2 col-lg-2 text-center mx-auto my-4">
-
-        <h5 class="font-weight-bold text-uppercase mb-4"><b>Follow Us On</b></h5>
-        <ul class="list-unstyled">
-      <li>
-        <a href="#" class="fa fa-facebook"></a> &nbsp;
-        <a href="#" class="fa fa-twitter"></a>&nbsp;
-        <a href="#" class="fa fa-instagram"></a>&nbsp;
-        <a href="#" class="fa fa-youtube"></a>&nbsp;
-      </li>
-      </ul>
-
-      </div>
     </div>
-
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="#"> FinanceManagement.com</a>
+    </div>
   </div>
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="#"> FinanceManagement.com</a>
-  </div>
-</div>
-
-
-
-
-
-

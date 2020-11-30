@@ -11,23 +11,36 @@ import {Router} from '@angular/router';
 export class ConsumerregisterComponent implements OnInit {
   //consumer:Consumer;
   consumer:Consumer={};
-  bank:string[]=["Indian Bank","HDFC Bank","Canara Bank","State Bank of India","Punjab National Bank"]
   constructor(private registerservice:Registerservice, private router:Router) { 
     //this.consumer= new Consumer();
   }
     
   ngOnInit(): void {
-    
+    this.getbanks();
   }
 
 result;
 onSubmit(){
+  if(this.consumer.CardType==null){
+    window.alert("Please Choose the Card Type");
+  }
+  else{
   this.registerservice.Adduser(this.consumer).subscribe(
-    (data)=>{this.result=data;console.log(this.result); window.alert(this.result)}
+    (data)=>{this.result=data;console.log(this.result); window.alert(this.result);
+      this.consumer.Password=null;
+      this.consumer.ConfirmPassword=null;
+  }
   );
+  }
 }
 RedirectLogin(){
   this.router.navigate(['/Login']);
+}
+banks
+getbanks(){
+  this.registerservice.selectbank().subscribe(
+    (data)=>{this.banks=data;}
+  );
 }
 }
 

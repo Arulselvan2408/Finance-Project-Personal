@@ -14,7 +14,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class ProductsController : ApiController
     {
-        private FinanceEntities3 db = new FinanceEntities3();
+        private FinanceEntities db = new FinanceEntities();
 
         // GET: api/Products
         public IQueryable<Product> GetProducts()

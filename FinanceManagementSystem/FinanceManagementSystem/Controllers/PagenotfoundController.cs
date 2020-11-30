@@ -12,7 +12,7 @@ namespace FinanceManagementSystem.Controllers
         [HttpGet]
         public HttpResponseMessage ErrorPage()
         {
-            return Request.CreateResponse(HttpStatusCode.NotFound);
+            return Request.CreateResponse(HttpStatusCode.OK, "404 Error. Page Not Found");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace FinanceManagementSystem.Controllers
 {
     public class ProductInfoController : ApiController
     {
-        FinanceEntities3 db = new FinanceEntities3();
+        FinanceEntities db = new FinanceEntities();
 
         // GET: api/Products/5
         [ResponseType(typeof(Product))]
@@ -33,6 +33,17 @@ namespace FinanceManagementSystem.Controllers
             return Ok(product);
         }
         //making changes on the orderdeatails, products, orders, cardtable on successful order
+        #region OrderPayment
+        //Calculating the Required field for the order such as total amount, emi per month, processing etc.
+        //generating the order id and deducting the amount from card based on the product purchased.
+        /// <summary>
+        /// OrderPayment
+        /// </summary>
+        /// <param name=int "productid"></param>
+        /// <param name= int "quantity"></param>
+        /// <param name=int "EMI"></param>
+        /// <param name= from login"username"></param>
+        /// <returns>on sucessful order deducts the amount from card</returns>
         public HttpResponseMessage GetOrderinfo(int productid, int quantity, int EMI, string username)
         {
             Product product = (from p in db.Products
@@ -47,11 +58,8 @@ namespace FinanceManagementSystem.Controllers
                               select c.CardNumber).FirstOrDefault();
 
             Product pro = new Product();
-            if (quantity< 0)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, "Quantity Should Not be zero or negative");
-            }
-            else if (quantity > pro.AvailableQuantity)
+            
+            if (quantity > pro.AvailableQuantity)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, "Products are out of Stock, Please order in less Quantity");
             }
@@ -93,11 +101,12 @@ namespace FinanceManagementSystem.Controllers
                     }
                     catch (Exception e)
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK, e);
+                        return Request.CreateResponse(HttpStatusCode.OK, e.Message);
                     }
                     return Request.CreateResponse(HttpStatusCode.OK, "Order Placed & Purchase Successfull. Your EMI amount Per Month is"+" "+EMIperMonth);
                 }
             }
         }
-    }   
+        #endregion
+    }
 }

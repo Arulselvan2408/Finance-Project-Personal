@@ -13,7 +13,7 @@
                     <td> PRODUCT NAME: {{p.ProductName}}<br>
                         PRODUCT DETAILS: {{p.ProductDetails}}<br>
                         COST: {{p.CostPerUnit}}<br>
-                        <button class="btn btn-success" type="submit" (click)="RedirectLogin()">BUY NOW</button>
+                        <button class="btn btn-success" type="submit" (click)="RedirectLogin(p.ProductID)">BUY NOW</button>
                     </td>
                     <hr>
                 </tr>
@@ -34,6 +34,7 @@
     <p style="text-align: center; text-decoration: underline; font-size: large;">Eligibility</p>
     <ul>
         <li>The user Registering for the Card should have active Bank Account</li>
+        <li>The user should be of age above 10</li>
     </ul>
 </div>
 

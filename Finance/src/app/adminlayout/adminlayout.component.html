@@ -1,1 +1,10 @@
-<p>adminlayout works!</p>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Welcome to Finance Management</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li *ngIf="loginsession"><a>Hello {{username}}</a></li>
+        <li *ngIf="!loginsession"><a routerLink="Login">Login</a></li>
+        <li *ngIf="loginsession"><a (click)="logOff()">LogOff</a></li>
+      </ul>

@@ -15,10 +15,10 @@ namespace FinanceManagementSystem.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class FinanceEntities3 : DbContext
+    public partial class FinanceEntities : DbContext
     {
-        public FinanceEntities3()
-            : base("name=FinanceEntities3")
+        public FinanceEntities()
+            : base("name=FinanceEntities")
         {
         }
     
@@ -37,6 +37,15 @@ namespace FinanceManagementSystem.Models
         public virtual DbSet<OTP_Validation> OTP_Validation { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+    
+        public virtual int adduserinadmin(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("adduserinadmin", usernameParameter);
+        }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

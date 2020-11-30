@@ -9,12 +9,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let p of Products">
-                <td><img [src]='p.Image' height="215px" width="150px"></td>
+            <tr *ngFor="let p of Products" style="font-size: large;">
+                <td><img [src]='p.Image' height="215px" width="160px"></td>
                 <td> PRODUCT NAME: {{p.ProductName}}<br>
                     PRODUCT DETAILS: {{p.ProductDetails}}<br>
-                    COST: {{p.CostPerUnit}}<br>
-                    <a [routerLink]="['/ProductInfo/',p.ProductID]">Buy Now</a>
+                    COST: {{p.CostPerUnit|currency:'INR':true}}<br>
+                    <a [routerLink]="['/ProductInfo/',p.ProductID]" style="font-size: larger;">Buy Now</a>
                 </td>
                 <hr>
             </tr>

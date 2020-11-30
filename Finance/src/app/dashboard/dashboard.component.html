@@ -1,11 +1,3 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a (click)="RedirectProduct()">Products</a></li>
-
-        </ul>
-    </div>
-</nav>
 <div class="container">
     <div align="center">
         <div>
@@ -33,10 +25,10 @@
     </div>
 
     <div>
-        <div *ngFor="let credit of creditdetails">
-            <p>TOTAL CREDIT:{{credit.TotalCredit}}</p>
-            <p>CREDIT USED:{{credit.Creditused}}</p>
-            <p>REMAINING CREDIT:{{credit.RemainingCredit}}</p>
+        <div *ngFor="let credit of creditdetails" class="container">
+            <p>TOTAL CREDIT:&nbsp;{{credit.TotalCredit|currency:'INR':true}}</p>
+            <p>CREDIT USED:&nbsp;{{credit.Creditused|currency :'INR':true:'1.2-2'}}</p>
+            <p>REMAINING CREDIT:&nbsp;{{credit.RemainingCredit|currency :'INR':true: '1.2-2'}}</p>
         </div>
         <!--<div>
             <div align="center">
@@ -49,7 +41,7 @@
                 <P>BALANCE:{{p.Balance}}</P>
             </div>
         </div>-->
-        <div>
+        <div class="container" align="center">
             <table class="table table-bordered">
                 <thead>
                     <tr class="tableCols">
@@ -58,7 +50,7 @@
                         <th>Quanity</th>
                         <!--<th>PAID</th>
                         <th>Balance</th>-->
-                    </tr>                   
+                    </tr>
                 </thead>
                 <tbody>
                     <tr align="center" *ngFor="let p of purchasedetails">
@@ -93,14 +85,16 @@
                     <tr align="center" *ngFor="let t of transactiondetails;let i=index">
                         <td>{{t.OrderID}}</td>
                         <td>{{t.OrderDate| date:'mediumDate'}}</td>
-                        <td>{{t.AmountPayable}}</td>
+                        <td>{{t.AmountPayable|currency :'INR':true:'1.2-2'}}</td>
                         <td>{{t.EMI_Tenure_In_Months}}</td>
-                        <td>{{t.BillAmountperMonth}}</td>
+                        <td>{{t.BillAmountperMonth|currency :'INR':true:'1.2-2'}}</td>
                         <td>{{t.Remaining_EMI_Tenures}}</td>
                         <td>{{t.LastPaymentDate| date:'mediumDate'}}</td>
-                        <td><button class="btn btn-primary" (click)="EmiRepayment(t.OrderID)" [disabled]="t.Remaining_EMI_Tenures ==0">Pay Now</button></td>
+                        <td><button class="btn btn-primary" (click)="EmiRepayment(t.OrderID)"
+                                [disabled]="t.Remaining_EMI_Tenures ==0">Pay Now</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</div>

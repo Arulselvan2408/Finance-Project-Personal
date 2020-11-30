@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminService } from 'src/Services/admin.Service';
 import { HomePageService } from 'src/Services/Homepage.service';
+import { ActiveuserComponent } from './activeuser/activeuser.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { ConsumerregisterComponent } from './consumerregister/consumerregister.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'ProductInfo/:id',component:ProductinfopageComponent},
   {path:'Login',component:LoginpageComponent},
   {path:'DashBoard', component:DashboardComponent},
+  {path:'ActiveUser', component:ActiveuserComponent},
   {path:'**', component:PagenotfoundComponent}
 ];
 
