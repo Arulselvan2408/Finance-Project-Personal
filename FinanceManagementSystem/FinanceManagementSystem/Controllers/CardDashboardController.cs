@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using FinanceManagementSystem.Models;
-using FinanceManagementSystem.ViewModel;
+
 
 namespace FinanceManagementSystem.Controllers
 {
@@ -19,11 +19,18 @@ namespace FinanceManagementSystem.Controllers
         [Route("api/CardDashboard/CardDetails")]
         public HttpResponseMessage CardDetails(string username)
         {
-            var card = (from c in db.CardTables
-                        where c.Name == username
-                        select new { c.CardNumber, c.Name, c.ValidTill, c.CardType }
+            try
+            {
+                var card = (from c in db.CardTables
+                            where c.Name == username
+                            select new { c.CardNumber, c.Name, c.ValidTill, c.CardType }
                      ).ToList();
-            return this.Request.CreateResponse(HttpStatusCode.OK, card);
+                return this.Request.CreateResponse(HttpStatusCode.OK, card);
+            }
+            catch(Exception)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, "Card details for Particular user Not available");
+            }
 
 
         }
@@ -69,9 +76,7 @@ namespace FinanceManagementSystem.Controllers
             catch (Exception e)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, e.Message);
-            }
-            
-                             
+            }                             
         }
         #endregion
 

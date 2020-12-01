@@ -65,7 +65,9 @@ namespace FinanceManagementSystem.Controllers
             }
             else
             {
-                CardTable ct = new CardTable();
+                CardTable ct = (from c in db.CardTables
+                                where c.CardNumber == cardnumber
+                                select c).FirstOrDefault();
                 if (AmountPayable > ct.RemainingCredit)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, "You donot Have Enough Credits to buy this Product");

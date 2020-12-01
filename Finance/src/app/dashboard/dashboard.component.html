@@ -89,7 +89,14 @@
                         <td>{{t.EMI_Tenure_In_Months}}</td>
                         <td>{{t.BillAmountperMonth|currency :'INR':true:'1.2-2'}}</td>
                         <td>{{t.Remaining_EMI_Tenures}}</td>
-                        <td>{{t.LastPaymentDate| date:'mediumDate'}}</td>
+                        <td>
+                            <div *ngIf="t.LastPaymentDate ==null">
+                                N/A
+                            </div>
+                            <div *ngIf="t.LastPaymentDate != null">
+                                {{t.LastPaymentDate| date:'mediumDate'}}
+                            </div>
+                        </td>
                         <td><button class="btn btn-primary" (click)="EmiRepayment(t.OrderID)"
                                 [disabled]="t.Remaining_EMI_Tenures ==0">Pay Now</button></td>
                     </tr>

@@ -24,7 +24,7 @@ import { AdminlayoutComponent } from './adminlayout/adminlayout.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ActiveuserComponent } from './activeuser/activeuser.component'
-
+import {PasswordService} from 'src/Services/Password.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,7 @@ import { ActiveuserComponent } from './activeuser/activeuser.component'
     AppRoutingModule,
     HttpClientModule,FormsModule
   ],
-  providers: [ProductService, AdminService, ImageUploadService, ProductInfoService, Registerservice,CardService],
+  providers: [ProductService, AdminService, ImageUploadService, ProductInfoService, Registerservice,CardService, PasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

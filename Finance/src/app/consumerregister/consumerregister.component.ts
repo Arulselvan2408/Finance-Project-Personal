@@ -24,6 +24,9 @@ onSubmit(){
   if(this.consumer.CardType==null){
     window.alert("Please Choose the Card Type");
   }
+  else if(this.consumer.SelectBank==null){
+    window.alert("Please Choose the Bank");
+  }
   else{
   this.registerservice.Adduser(this.consumer).subscribe(
     (data)=>{this.result=data;console.log(this.result); window.alert(this.result);
